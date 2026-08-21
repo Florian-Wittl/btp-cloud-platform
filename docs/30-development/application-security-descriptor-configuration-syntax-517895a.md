@@ -224,6 +224,130 @@ In the `xs-security.json` file, “local” scopes must be prefixed with the var
 
 
 
+### Scopes with Critical Security Authorizations
+
+Critical security authorizations, which are scopes prefixed with `xs_`, become transparent for custom roles collections and SAP-delivered roles. These role collections have either been created by administrators, or they include roles with critical authorizations configured in the application security descriptor file \(`xs-security.json`\).
+
+The following critical security authorizations are available as scopes:
+
+**Scopes with Critical Authorizations**
+
+
+<table>
+<tr>
+<th valign="top">
+
+Scope
+
+</th>
+<th valign="top">
+
+Description
+
+</th>
+</tr>
+<tr>
+<td valign="top">
+
+`xs_authorization.read` 
+
+</td>
+<td valign="top">
+
+Read authorizations
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`xs_authorization.write` 
+
+</td>
+<td valign="top">
+
+Manage authorizations
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`xs_user.read` 
+
+</td>
+<td valign="top">
+
+Read users
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`xs_user.write` 
+
+</td>
+<td valign="top">
+
+Manage users
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`xs_idp.read` 
+
+</td>
+<td valign="top">
+
+Read trust configurations
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`xs_idp.write` 
+
+</td>
+<td valign="top">
+
+Manage trust configurations
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`xs_apicredential.read` 
+
+</td>
+<td valign="top">
+
+Read API credentials
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`xs_apicredential.write` 
+
+</td>
+<td valign="top">
+
+Manage API credentials
+
+</td>
+</tr>
+</table>
+
+Administrators manage role collections with critical security authorizations or add roles with such authorizations to role collections. They must be aware of the criticality of the security role collections for existing or new assignments to users, user groups, and attributes.
+
+
+
 ### Foreign Scopes
 
 Usually, “foreign” scopes include the service plan and the name of the application to which the scope belongs. For more information, see [Referencing the Application](application-security-descriptor-configuration-syntax-517895a.md#loio517895a9612241259d6941dbf9ad81cb__section_fm2_wsk_pdb) Use the following syntax:

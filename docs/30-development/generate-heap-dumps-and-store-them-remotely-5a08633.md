@@ -2,9 +2,41 @@
 
 # Generate Heap Dumps and Store Them Remotely
 
+If an application is bound to an Object Store service instance, heap dumps can be uploaded automatically to a cloud storage when an OutOfMemoryError occurs.
+
 
 
 ## Prerequisites
+
+1.  Create an Object Store service instance. For example, the service name is **`myobjectstore`** and its plan is `s3-standard`:
+
+    ```
+    cf create-service objectstore s3-standard myobjectstore
+    ```
+
+2.  In the `manifest.yml` file, bind this service instance to your Java application \(**`myapp`**\) and enable remote heap dump load:
+
+    ```
+    
+    ---
+    applications:
+    - name: myapp
+      ...
+      buildpacks:
+      - sap_java_buildpack_jakarta
+      env:
+        TARGET_TUNTIME: tomcat
+        SJB_HEAPDUMP_TO_OBJECTSTORE: "true"
+      services:
+      - myobjectstore
+    ```
+
+3.  Deploy your application \(**`myapp`**\):
+
+    ```
+    cf push myapp
+    ```
+
 
 Your application is bound to an Object Store service instance. Object Store provides the secure cloud storage location \(bucket or container\) where heap dumps will be uploaded. For more information, see: [What Is Object Store?](https://help.sap.com/docs/object-store/object-store-service-on-sap-btp/what-is-object-store?version=Cloud)
 
@@ -14,7 +46,7 @@ Your application is bound to an Object Store service instance. Object Store prov
 
 Use this way when you need to capture and analyze heap dumps from Java applications experiencing *OutOfMemoryError* in environments where local disk space is limited or heap dumps need to be preserved after container restarts.
 
-When this feature is enabled, heap dumps generated during *OutOfMemoryError* are uploaded to a protected and isolated cloud provider environment \(AWS, GCP, or Azure\). The respective storage location is automatically provided by the Object Store service, ensuring your heap dumps are stored securely within your organization's cloud infrastructure with the appropriate access control and encryption.
+When this feature is enabled, heap dumps generated during *OutOfMemoryError* are uploaded to a protected and isolated cloud provider environment \(AWS S3 or Azure\). The respective storage location is automatically provided by the Object Store service, ensuring your heap dumps are stored securely within your organization's cloud infrastructure with the appropriate access control and encryption.
 
 **Configuration Properties:**
 
@@ -147,7 +179,7 @@ To do that, follow the steps below:
 1.  Get the service binding details from your bound Object Store service instance \(bucket/container name, access credentials, endpoint URL\). To do that, run:
 
     ```
-    cf env <app-name>
+    cf env myapp
     ```
 
 2.  Look for the VCAP\_SERVICES section containing your ***objectstore*** credentials. Example output:
@@ -164,7 +196,7 @@ To do that, follow the steps below:
               "bucket": "hcp-12345678-8888-abcd-aaa-12345678678",  
               "region": "eu-01"                             
             },
-            "instance_name": "objectstore-service",
+            "instance_name": "myobjectstore",
             "label": "objectstore",
             "plan": "s3-standard"
           }

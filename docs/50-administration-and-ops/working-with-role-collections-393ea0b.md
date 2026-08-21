@@ -15,6 +15,9 @@ Once you have created a role collection, you can pick the roles that apply to th
 
 Finally, you assign the role collection directly to users or indirectly to attributes such as groups. For more information, see the related link.
 
+> ### Note:  
+> A warning sign marks custom role collections that include critical security authorizations \(see [scopes](../30-development/application-security-descriptor-configuration-syntax-517895a.md#loio517895a9612241259d6941dbf9ad81cb__section_tch_vqr_xs)\). Review the authorizations carefully before you assign such a role collection.
+
 
 
 <a name="loio393ea0b222754311884123ce564779bd__section_vw4_bw4_qlb"/>
