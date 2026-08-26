@@ -10,38 +10,38 @@ Enable the Kyma environment with a custom identity provider \(IdP\).
 
 ## Prerequisites
 
--   If you choose to use SAP Cloud Identity Services as a custom IdP, you have configured your tenant as an OpenID Connect \(OIDC\) provider for your Kyma cluster. For details, see [Configure OpenID Connect Application for Authorization Code Flow](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/auth-code-configure-openid-connect-application-for-authorization-code-flow?version=Cloud).
+-   If you choose to use SAP Cloud Identity Services as a custom identity provider, you have configured your tenant as an OpenID Connect \(OIDC\) provider for your Kyma cluster. For details, see [Configure OpenID Connect Application for Authorization Code Flow](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/auth-code-configure-openid-connect-application-for-authorization-code-flow?version=Cloud).
 
     > ### Tip:  
-    > When using SAP Cloud Identity Services as a custom IdP, make sure you have public client flows enabled.
+    > When using SAP Cloud Identity Services as a custom identity provider, make sure you have public client flows enabled.
 
--   You have the Kyma dashboard URL \(`https://dashboard.kyma.cloud.sap`\) and the localhost for kubectl authentication \(`http://localhost:8000`\) configured as allowed callback URLs at your IdP provider, so that authenticated users can be redirected back to the Kyma application. See [Redirect URIs, Post Logout Redirect URI Rules](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/redirect-uris-post-logout-redirect-uri-rules?version=Cloud).
+-   You have the Kyma dashboard URL \(`https://dashboard.kyma.cloud.sap`\) and the localhost for kubectl authentication \(`http://localhost:8000`\) configured as allowed callback URLs at your identity provider, so that authenticated users can be redirected back to the Kyma application. See [Redirect URIs, Post Logout Redirect URI Rules](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/redirect-uris-post-logout-redirect-uri-rules?version=Cloud).
 
 
 > ### Tip:  
-> It is recommended to use SAP Cloud Identity Services tenant as a custom IdP. It allows you to use SAP Cloud Identity Services as a proxy to integrate your corporate identity provider. See [Get Your Tenant](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/get-your-tenant?version=Cloud). You could also configure SAP Cloud Identity Services to use a third-party IdP if you already have one.
+> It's recommended to use SAP Cloud Identity Services tenant as a custom identity provider. It allows you to use SAP Cloud Identity Services as a proxy to integrate your corporate identity provider. See [Get Your Tenant](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/get-your-tenant?version=Cloud). You could also configure SAP Cloud Identity Services to use a third-party identity provider if you already have one.
 
 
 
 ## Context
 
-When you create a new Kyma instance in the SAP BTP cockpit from the Service Marketplace, you can configure your custom OpenID Connect IdP to authenticate users in your Kyma runtime.
+When you create a new Kyma instance in the SAP BTP cockpit from the Service Marketplace, you can configure your custom OpenID Connect identity provider to authenticate users in your Kyma runtime.
 
-If you've already created your Kyma environment, you can also apply the custom IdP configuration and set up administrators during your Kyma instance update operation by providing the details as an array of strings in the respective fields.
+If you've already created your Kyma environment, you can also apply the custom identity provider configuration and set up administrators during your Kyma instance update operation by providing the details as an array of strings in the respective fields.
 
 
 
 ## Procedure
 
-1.  Go to *Services* \> *Service Marketplace* and [Creating Kyma Instances](../50-administration-and-ops/creating-kyma-instances-09dd313.md).
+1.  Go to *Services* \> *Service Marketplace* and create a Kyma instance. For additional information, see [Creating Kyma Instances](../50-administration-and-ops/creating-kyma-instances-09dd313.md).
 
 2.  In the *Additional Parameters* view, go to *Oidc:*, choose *List*, and fill in the following fields:
 
     -   *Client ID* - the client ID for the OpenID client
     -   *Groups Claim* - the name of a custom OpenID Connect claim for specifying user groups
 
-        > ### Note:  
-        > An identity provider token consists of fields \(claims\) that are included in it. For example:
+        > ### Example:  
+        > An identity provider token consists of fields \(claims\) that are included in it.
         > 
         > ```
         > {
@@ -120,7 +120,7 @@ If you've already created your Kyma environment, you can also apply the custom I
 
 ## Results
 
-Your Kyma environment is instantiated with a custom IdP.
+Your Kyma environment is instantiated with a custom identity provider.
 
 **Related Information**  
 

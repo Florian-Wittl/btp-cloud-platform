@@ -76,5 +76,5 @@ Some customer contracts include EU Access, which restricts processing of persona
 
 [Regions and API Endpoints for the ABAP Environment](regions-and-api-endpoints-for-the-abap-environment-879f373.md "")
 
-[Regions for the Kyma Environment](regions-for-the-kyma-environment-557ec3a.md "To work with the Kyma environment, you need to specify the region for both your subaccount and the cluster.")
+[Regions for the Kyma Environment](regions-for-the-kyma-environment-557ec3a.md "To work with the Kyma environment, you must specify the region for both your subaccount and the cluster.")
 

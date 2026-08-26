@@ -21,7 +21,9 @@ The `cluster-admin` role is assigned to your account.
 
 ## Context
 
-You can assign roles to a group of users only if you use a custom identity provider. Assigning roles in Kyma is based on the [Kubernetes role-based access control \(RBAC\)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/). You can see the list of available roles in Kyma dashboard when you create a Role Binding. Once you become the admin, your user name is read from the SAP BTP \(RBAC\) concept and is passed to the Kyma provisioner to be bound to the `cluster-admin` role in Kyma.
+You can assign roles to a group of users only if you use a custom identity provider. Assigning roles in Kyma is based on the [Kubernetes role-based access control \(RBAC\)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/). You can see the list of available roles in Kyma dashboard when you create a RoleBinding. Once you become the admin, your user name is read from the SAP BTP \(RBAC\) concept and is passed to the Kyma provisioner to be bound to the `cluster-admin` role in Kyma.
+
+Kyma modules provide aggregated ClusterRoles that automatically extend the standard Kubernetes roles. For details about how aggregation works and how to inspect role permissions, see [ClusterRole Aggregation in Kyma](clusterrole-aggregation-in-kyma-33883dd.md).
 
 
 
@@ -55,7 +57,7 @@ You can assign roles to a group of users only if you use a custom identity provi
 
 ## Results
 
-The users have the required permissions within the specified namespace. If the users don't have additional Cluster Role Binding to list the namespaces, they can still access the Kyma dashboard overview but must enter the required namespace name manually.
+The users have the required permissions within the specified namespace. If the users don't have additional cluster role binding to list the namespaces, they can still access the Kyma dashboard overview but must enter the required namespace name manually.
 
 
 
@@ -63,10 +65,12 @@ The users have the required permissions within the specified namespace. If the u
 
 ## Next Steps
 
-If the permissions of the default role aren't sufficient, clone the role and add the missing resources.
+If the permissions of the default role aren't sufficient, clone the role, and add the missing resources.
 
 **Related Information**  
 
 
-[Role-Based Access Control (RBAC) in Kyma](https://help.sap.com/viewer/df50977d8bfa4c9a8a063ddb37113c43/Cloud/en-US/bb31080fd0474d38a050e32a7a7ed629.html "Assigning permissions in Kyma is based on the Kubernetes role-based access control (RBAC). It’s recommended that you start with separating the developers and operators of a cluster. Later, you can refine the role concept as required.") :arrow_upper_right:
+[Authorization in the Kyma Environment](authorization-in-the-kyma-environment-bb31080.md "You control access to your Kyma cluster using Kubernetes role-based access control (RBAC). Roles define what resources users can access and what actions they can perform.")
+
+[ClusterRole Aggregation in Kyma](clusterrole-aggregation-in-kyma-33883dd.md "Kyma modules use Kubernetes ClusterRole aggregation to automatically extend standard roles with module-specific permissions. When you install a module, users already bound to the standard view, edit, or admin roles immediately gain the appropriate permissions for the module’s resources - no manual role updates are required.")
 

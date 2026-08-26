@@ -238,7 +238,7 @@ All communication in the Kyma cluster is encrypted using TLS 1.2.
 
 By default, a SAP BTP, Kyma runtime cluster is deployed with a shared tenant of SAP Cloud Identity Services provided by SAP. This Identity Provider \(IDP\) uses OIDC tokens to authenticate and is configured to enforce multi-factor authentication.
 
-As a best practice, you, the customer, can change the IdP to one controlled by you. This gives you control over the identity lifecycle of your accounts. Learn how to [Configuring a Custom Identity Provider for Kyma](configuring-a-custom-identity-provider-for-kyma-67bcc6e.md).
+As a best practice, you, the customer, can change the IdP to one controlled by you. This gives you control over the identity lifecycle of your accounts. For details, see [Configuring a Custom Identity Provider for Kyma](configuring-a-custom-identity-provider-for-kyma-67bcc6e.md).
 
 The Kubernetes API Server fulfills the following DISA STIGs requirements:
 
@@ -251,7 +251,7 @@ The Kubernetes API Server fulfills the following DISA STIGs requirements:
 
 
 
-### Role-based Access Control
+### Role-Based Access Control
 
 RBAC is enabled on Kyma clusters. The Roles and ClusterRoles deployed by Kyma follow the principle of least privilege.
 
@@ -277,7 +277,7 @@ Kyma worker nodes are distributed over several availability zones in order to pr
 
 Audit Logging of the Kubernetes API server is active, and the logs are written to SAP Platform Logging Service for SAP BTP.
 
-The Kubernetes API server fulfils the following DISA STIGs requirements:
+The Kubernetes API server fulfills the following DISA STIGs requirements:
 
 -   An audit policy \(V-242401\), an audit log path \(V-242402, V-242465\), and audit log retention \(V-242464\) are set.
 

@@ -10,7 +10,7 @@ When creating a Kyma cluster, you can configure various parameters to adjust it 
 
 ## Overview
 
-To configure the cluster parameters, you can use your preferred interface, the SAP BTP cockpit, or the SAP BTP command line interface \(btp CLI\).
+To configure the cluster parameters, you can use your preferred interface, the SAP BTP cockpit, or the command line interface \(btp CLI\).
 
 To check which parameters are available for configuration in a particular plan, see [Available Plans in the Kyma Environment](available-plans-in-the-kyma-environment-befe01d.md).
 
@@ -26,7 +26,7 @@ To check which parameters are available for configuration in a particular plan, 
 *Access Control List* \(`accessControlList`\) specifies the IP ranges that can access the Kubernetes API. Internally, the list of IP ranges includes additional entries necessary for the continuous operation of your cluster.
 
 > ### Caution:  
-> Enabling *Access Control List* restricts access to Kyma dashboard. As a result, after the parameter is configured, you can interact with your cluster only through kubectl.
+> Enabling *Access Control List* blocks access to Kyma dashboard. You can then manage your cluster only through kubectl.
 
 **Access Control List Parameter**
 
@@ -141,6 +141,10 @@ List of IP ranges or an empty list.
 </tr>
 </table>
 
+
+
+### Configuration
+
 To define your access control list, provide the `accessControlList` parameter with `allowedCIDRs` listing any correct IP ranges in the provisioning request. See the example configuration:
 
 ```
@@ -165,12 +169,7 @@ To remove your access control list, set `allowedCIDRs` to an empty list.
 
 ## Additional Volume Size
 
-With the *Additional Volume Size* \(`additionalVolumeSizeGi`\) parameter, you can request extra disk space on top of the default volume size for your worker nodes. The total volume size is computed as the sum of the default volume size and `additionalVolumeSizeGi`.
-
-You can set `additionalVolumeSizeGi` on the main Kyma worker pool and on additional worker node pools. See [Additional Worker Node Pools](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Additional_WN_Pools).
-
-> ### Tip:  
-> Before requesting additional disk space, check your current default volume size. See [Machine Type](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Machine_Type).
+With the *Additional Volume Size* \(`additionalVolumeSizeGi`\) parameter, you can add extra disk space on top of the default volume size for your worker nodes. The total volume size is the sum of the default volume size and `additionalVolumeSizeGi`.
 
 **Additional Volume Size Parameter**
 
@@ -228,6 +227,15 @@ Integer between 0 and 100.
 </tr>
 </table>
 
+
+
+### Configuration
+
+> ### Tip:  
+> Before requesting additional disk space, check your current default volume size. See [Machine Type](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Machine_Type).
+
+You can set `additionalVolumeSizeGi` on the main Kyma worker pool and on additional worker node pools. See [Additional Worker Node Pools](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Additional_WN_Pools).
+
 To add extra disk space to the main Kyma worker pool, set `additionalVolumeSizeGi` at the root level of the request.
 
 ```
@@ -255,7 +263,7 @@ When updating an existing cluster, the behavior differs depending on the worker 
 
 -   Main Kyma worker pool: If `additionalVolumeSizeGi` changes, the total volume size is recomputed as the sum of the default volume size and the new `additionalVolumeSizeGi` value. If you don't include `additionalVolumeSizeGi` in the update request, the existing volume is preserved.
 
--   Additional worker node pools: To update the additional volume size of an existing pool, you must explicitly provide the new `additionalVolumeSizeGi` value in the update request. To remove the additional volume size, either omit `additionalVolumeSizeGi` from the update request or set it to *0*.
+-   Additional worker node pools: To update the additional volume size of an existing pool, you must explicitly provide the new `additionalVolumeSizeGi` value in the update request. To remove the additional volume size, either omit `additionalVolumeSizeGi` from the update request or set it to `0`.
 
 
 
@@ -264,13 +272,63 @@ When updating an existing cluster, the behavior differs depending on the worker 
 
 ## Additional Worker Node Pools
 
-The *Additional Worker Node Pools* \(`additionalWorkerNodePools`\) array is an optional provisioning and updating parameter used for adding customized worker node pools to your Kyma runtime. It enables you to introduce worker nodes optimized and reserved for your particular workload requirements.
+With the *Additional Worker Node Pools* \(`additionalWorkerNodePools`\), parameter, you can add customized worker node pools to your Kyma runtime and introduce worker nodes optimized and reserved for your particular workload requirements.
 
-If you do not provide the `additionalWorkerNodePools` array in the provisioning request, no additional worker node pools are created.
+**Additional Worker Node Pools Parameter**
 
-If you do not provide the `additionalWorkerNodePools` array in the update request, the saved additional worker node pools stay unchanged. However, if you provide an empty array in the update request, all existing additional worker node pools are removed. If you rename your existing additional worker node pool, it is deleted and a new one is created.
 
-See also [Assigning Workloads to Worker Node Pools](assigning-workloads-to-worker-node-pools-1bf21c1.md).
+<table>
+<tr>
+<th valign="top">
+
+Parameter
+
+</th>
+<th valign="top">
+
+Supported Operation
+
+</th>
+<th valign="top">
+
+Default Value
+
+</th>
+<th valign="top">
+
+Allowed Input
+
+</th>
+</tr>
+<tr>
+<td valign="top">
+
+*Additional Worker Node Pools*
+
+btp CLI parameter: `additionalWorkerNodePools`
+
+type: array
+
+</td>
+<td valign="top">
+
+Provisioning
+
+Updating
+
+</td>
+<td valign="top">
+
+None \(if not provided, no additional worker node pools are created\)
+
+</td>
+<td valign="top">
+
+See the Additional Worker Node Pools Nested Parameters table.
+
+</td>
+</tr>
+</table>
 
 > ### Remember:  
 > The parameters marked with an asterisk "\*" are mandatory.
@@ -348,7 +406,7 @@ Specifies the provider-specific virtual machine type.
 
 Provisioning
 
-Updating <sup>[1](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__MT_update_footnote)</sup>
+Updating <sup>[1](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_mt_update)</sup>
 
 </td>
 <td valign="top">
@@ -369,11 +427,11 @@ type: boolean
 </td>
 <td valign="top">
 
-Specifies if high availability zones are supported. This setting is permanent and cannot be updated.
+Specifies if high availability zones are supported. This setting is permanent and cannot be updated <sup>[2](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_ha_update)</sup>.
 
 If enabled, your resources are distributed across three zones to enhance fault tolerance.
 
-If high availability is disabled, all resources are placed in a single, randomly selected zone. Disabling `haZones` is not recommended for production environments.
+If you disable high availability, all resources are placed in a single, randomly selected zone. Disabling `haZones` is not recommended for production environments.
 
 High availability is not supported in the `azure_lite` plan.
 
@@ -382,7 +440,7 @@ High availability is not supported in the `azure_lite` plan.
 
 Provisioning
 
-Updating <sup>[2](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__HA_update_footnote)</sup>
+Updating <sup>[2](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_ha_update)</sup>
 
 </td>
 <td valign="top">
@@ -565,13 +623,19 @@ Key-value pairs where each key is a non-empty string and each value is a string.
 </tr>
 </table>
 
-> ### Note:  
-> <sup>1</sup> You can update your virtual machine type only within the general-purpose machine types. You cannot perform updates on compute-intensive machine types.
-> 
-> For details, see [Machine Type](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Machine_Type).
+<sup>1</sup> You can update your virtual machine type only within the general-purpose machine types. You cannot perform updates on compute-intensive machine types. For details, see [Machine Type](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Machine_Type).
 
-> ### Note:  
-> <sup>2</sup> You can only use this parameter to update your Kyma runtime by creating a new additional worker node pool. You cannot use it to update an existing additional worker node pool.
+<sup>2</sup> You can only use this parameter to update your Kyma runtime by creating a new additional worker node pool. You cannot use it to update an existing additional worker node pool.
+
+
+
+### Configuration
+
+If you do not provide the `additionalWorkerNodePools` array in the provisioning request, no additional worker node pools are created.
+
+If you do not provide the `additionalWorkerNodePools` array in the update request, the saved additional worker node pools stay unchanged. However, if you provide an empty array in the update request, all existing additional worker node pools are removed. If you rename your existing additional worker node pool, it is deleted and a new one is created.
+
+See also [Assigning Workloads to Worker Node Pools](assigning-workloads-to-worker-node-pools-1bf21c1.md).
 
 When updating optional parameters of an existing additional worker node pool, the following rules apply:
 
@@ -631,7 +695,7 @@ See also [Assigning Workloads to Worker Node Pools](assigning-workloads-to-worke
 
 ## Administrators
 
-The *Administrators* \(`administrators`\) parameter specifies the list of runtime administrators.
+With the *Administrators* \(`administrators`\) parameter, you can define the list of runtime administrators.
 
 **Administrators Parameter**
 
@@ -689,6 +753,10 @@ A list of administrators' email addresses.
 </tr>
 </table>
 
+
+
+### Configuration
+
 See an example of the JSON input:
 
 > ### Sample Code:  
@@ -714,6 +782,8 @@ With the *Audit Log Access* \(`auditLogAccess`\) parameter, you can gain direct 
 
 > ### Caution:  
 > Enabling *Audit Log Access* is irreversible. If you enable the feature, you cannot disable it.
+> 
+> When you enable *Audit Log Access* during an update, you can only access the logs created after enabling the feature.
 
 **Audit Log Access Parameter**
 
@@ -757,11 +827,6 @@ Provisioning
 
 Updating
 
-> ### Note:  
-> When you enable *Audit Log Access* during an update, you can only access the logs created after enabling the feature.
-
-
-
 </td>
 <td valign="top">
 
@@ -770,7 +835,7 @@ Updating
 </td>
 <td valign="top">
 
-*true* or *false*
+`true` or `false`
 
 </td>
 </tr>
@@ -791,7 +856,7 @@ See also [Accessing Your Audit Log Data](accessing-your-audit-log-data-3f0002b.m
 
 ## Auto Scaler Max
 
-The *Auto Scaler Max* \(`autoScalerMax`\) is an integer parameter, which specifies the maximum number of virtual machines you can create.
+With the *Auto Scaler Max* \(`autoScalerMax`\) integer parameter, you can set the maximum number of virtual machines to create.
 
 > ### Caution:  
 > Cluster autoscaling is not subject to the Service Level Agreement \(SLA\). Successful autoscaling is not guaranteed. The mechanism may fail or take longer than expected due to constraints of the underlying cloud providers.
@@ -832,16 +897,16 @@ Allowed Input
 
 Standard:
 
--   `aws`
--   `gcp`
--   `azure`
--   `alicloud`
+-   Amazon Web Services \(`aws`\)
+-   Google Cloud \(`gcp`\)
+-   Microsoft Azure \(`azure`\)
+-   Alibaba Cloud \(`alicloud`\)
 
 Build Runtime:
 
--   `build-runtime-aws`
--   `build-runtime-gcp`
--   `build-runtime-azure` 
+-   Amazon Web Services \(`build-runtime-aws`\)
+-   Google Cloud \(`build-runtime-gcp`\)
+-   Microsoft Azure \(`build-runtime-azure`\)
 
 
 
@@ -952,7 +1017,7 @@ See the default JSON input:
 
 ## Auto Scaler Min
 
-The *Auto Scaler Min* \(`autoScalerMin`\) is an integer parameter, which specifies the minimum number of virtual machines you can create.
+With the *Auto Scaler Min* \(`autoScalerMin`\) integer parameter, you can set the minimum number of virtual machines to create.
 
 **Auto Scaler Min Parameter**
 
@@ -990,16 +1055,16 @@ Allowed Input
 
 Standard:
 
--   `aws`
--   `gcp`
--   `azure`
--   `alicloud`
+-   Amazon Web Services \(`aws`\)
+-   Google Cloud \(`gcp`\)
+-   Microsoft Azure \(`azure`\)
+-   Alibaba Cloud \(`alicloud`\)
 
 Build Runtime:
 
--   `build-runtime-aws`
--   `build-runtime-gcp`
--   `build-runtime-azure` 
+-   Amazon Web Services \(`build-runtime-aws`\)
+-   Google Cloud \(`build-runtime-gcp`\)
+-   Microsoft Azure \(`build-runtime-azure`\)
 
 
 
@@ -1110,7 +1175,7 @@ See an example of the JSON input:
 
 ## Cluster Name\*
 
-The *Cluster Name* \(`name`\) is a string, which provides the name of your cluster.
+Use the *Cluster Name* \(`name`\) parameter to set the name of your cluster.
 
 > ### Remember:  
 > The parameters marked with an asterisk "\*" are mandatory.
@@ -1155,28 +1220,23 @@ type: string
 
 Provisioning
 
-Updating
-
-> ### Note:  
-> For updates, the *Cluster Name* parameter is optional.
-
-
+Updating \(for updates, the *Cluster Name* parameter is optional\)
 
 </td>
 <td valign="top">
 
-Automatically generated as your Subaccount’s Subdomain.
+Defaults to your subaccount’s subdomain.
 
 </td>
 <td valign="top">
 
-Short string of 1 to 64 alphanumeric characters \(A-Z, a-z, 0–9\) and hyphens. It must not contain whitespace characters.
+Short string of 1 to 64 alphanumeric characters \(A-Z, a-z, 0–9\) and hyphens \(-\). It must not contain whitespace characters.
 
 </td>
 </tr>
 </table>
 
-See also [Tracking Kubeconfig and Cluster Associations in Kyma](tracking-kubeconfig-and-cluster-associations-in-kyma-f026eda.md) .
+See also [Tracking Kubeconfig and Cluster Associations in Kyma](tracking-kubeconfig-and-cluster-associations-in-kyma-f026eda.md).
 
 
 
@@ -1184,13 +1244,7 @@ See also [Tracking Kubeconfig and Cluster Associations in Kyma](tracking-kubecon
 
 ## Colocate Control Plane
 
-With the *Colocate Control Plane* \(`colocateControlPlane`\) parameter, you can specify if your control plane and worker nodes should be in the same region.
-
-If you set it to `true`, it ensures the location of the control plane in the same region where your cluster's worker nodes are deployed. With this setting, you can control where your sensitive data is stored. If the control plane cannot be colocated in the selected region, the provisioning process fails. The error message offers you a list of regions supporting the control plane colocation.
-
-If you set the parameter to `false` or leave the field empty, your control plane can sometimes be deployed in a different region than the worker nodes.
-
-To learn which regions support the control plane colocation, see the [Region\*](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Region) section.
+With the *Colocate Control Plane* \(`colocateControlPlane`\) parameter, you can specify that your control plane and worker nodes are in the same region.
 
 **Colocate Control Plane Parameter**
 
@@ -1235,18 +1289,28 @@ Provisioning
 </td>
 <td valign="top">
 
-*false*
+`false`
 
 </td>
 <td valign="top">
 
-*true* \(control plane in the same region as cluster's worker nodes\)
+`true`\(control plane in the same region as cluster's worker nodes\)
 
-*false* \(control plane can be deployed in a different region than worker nodes\)
+`false` \(control plane can be deployed in a different region than worker nodes\)
 
 </td>
 </tr>
 </table>
+
+
+
+### Configuration
+
+If you set it to `true`, it ensures the location of the control plane in the same region where your cluster's worker nodes are deployed. With this setting, you can control where your sensitive data is stored. If the control plane cannot be colocated in the selected region, the provisioning process fails. The error message offers you a list of regions supporting the control plane colocation.
+
+If you set the parameter to `false` or leave the field empty, your control plane can sometimes be deployed in a different region than the worker nodes.
+
+To learn which regions support the control plane colocation, see the [Region\*](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Region) section.
 
 See an example of the JSON input:
 
@@ -1261,16 +1325,7 @@ See an example of the JSON input:
 
 ## Machine Type
 
-The *Machine Type* \(`machineType`\) parameter is a string, which specifies the provider-specific virtual machine type.
-
-Two categories of machine types are available:
-
--   General-purpose — available for use in both the mandatory Kyma worker node pool and in your additional worker node pools. See the Machine Type Parameter table.
--   Compute-intensive — available for use only in additional worker node pools. See [Machine Type in Additional Worker Node Pools](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Additional_WN_Pools).
-
-It is recommended to choose version-agnostic machine type names \(for example, `Standard_D2s` or `mi.large`\) to ensure smooth updates and to avoid disruptions during upgrades. The version-agnostic machine type name represents the underlying instance family that powers this machine type. The most optimized underlying instance families are assigned to the version-agnostic machine type names and can be updated to newer generations during maintenance windows without affecting your configurations. The parenthetical value in the table shows the specific instance type currently assigned. Where present, the parenthetical value in the table shows the machine type that is actually provisioned.
-
-The `Standard_D_v3` machine types have been deprecated by Microsoft Azure and can no longer be provisioned. To avoid breaking existing configurations, these inputs are automatically mapped to the equivalent `Standard_Ds_v5` generation, so you do not need to adjust your configurations.
+With the *Machine Type* \(`machineType`\) parameter, you can specify the IaaS provider-specific virtual machine type.
 
 **Machine Type Parameter**
 
@@ -1279,14 +1334,85 @@ The `Standard_D_v3` machine types have been deprecated by Microsoft Azure and ca
 <tr>
 <th valign="top">
 
-Plan
+Parameter
 
 </th>
 <th valign="top">
 
-Supported Operation
+Supported Operations
 
 </th>
+<th valign="top">
+
+Default Value
+
+</th>
+<th valign="top">
+
+Allowed Input
+
+</th>
+</tr>
+<tr>
+<td valign="top">
+
+*Machine Type*
+
+btp CLI parameter: `machineType`
+
+type: string
+
+</td>
+<td valign="top">
+
+Provisioning
+
+Updating
+
+</td>
+<td valign="top">
+
+Varies by IaaS provider and service plan. Expand the table for your preferred provider to see the default.
+
+</td>
+<td valign="top">
+
+Varies by IaaS provider and service plan. Expand the table for your preferred provider for the full list.
+
+To ensure smooth updates and avoid disruptions during upgrades, choose version-agnostic machine type names, such as `Standard_D2s` or `mi.large`. The version-agnostic machine type name represents the underlying instance family that powers this machine type. The most optimized underlying instance families are assigned to the version-agnostic machine type names and can be updated to newer generations during maintenance windows without affecting your configurations. Where present, the parenthetical values in the tables show the specific instance types that are actually provisioned.
+
+</td>
+</tr>
+</table>
+
+See an example input for the *Machine Type* parameter:
+
+> ### Sample Code:  
+> ```
+> "machineType": "mi.large"
+> ```
+
+The available categories of machine types are the following:
+
+-   General-purpose — available for use in both the mandatory Kyma worker node pool and in your additional worker node pools.
+-   Compute-intensive — available for use only in additional worker node pools. See [Machine Types in Additional Worker Node Pools](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__mts_in_additional_wnp).
+
+To see the general-purpose machine types available for specific service plans, expand the table for your preferred IaaS provider.
+
+
+
+### Amazon Web Services
+
+You can use the machine types listed in the table with the following plans:
+
+-   Standard: Amazon Web Services \(technical name: `aws`\)
+-   Build Runtime: Amazon Web Services \(technical name: `build-runtime-aws`\)
+
+**AWS Machine Types**
+
+
+<table>
+<tr>
 <th valign="top">
 
 Default Value
@@ -1309,24 +1435,6 @@ Default Volume Size
 </th>
 </tr>
 <tr>
-<td valign="top" rowspan="21">
-
-Standard: Amazon Web Services
-
-technical name: `aws`
-
-Build Runtime: Amazon Web Services
-
-technical name: `build-runtime-aws`
-
-</td>
-<td valign="top" rowspan="21">
-
-Provisioning
-
-Updating
-
-</td>
 <td valign="top" rowspan="21">
 
 `mi.large`
@@ -1688,25 +1796,44 @@ Updating
 
 </td>
 </tr>
+</table>
+
+
+
+### Google Cloud
+
+You can use the machine types listed in the table with the following plans:
+
+-   Standard: Google Cloud \(technical name: `gcp`\)
+-   Build Runtime: Google Cloud \(technical name: `build-runtime-gcp`\)
+
+**Google Cloud Machine Types**
+
+
+<table>
 <tr>
-<td valign="top" rowspan="7">
+<th valign="top">
 
-Standard: Google Cloud
+Default Value
 
-technical name: `gcp`
+</th>
+<th valign="top">
 
-Build Runtime: Google Cloud
+Allowed Input
 
-technical name: `build-runtime-gcp`
+</th>
+<th valign="top">
 
-</td>
-<td valign="top" rowspan="7">
+Virtual Machine Size
 
-Provisioning
+</th>
+<th valign="top">
 
-Updating
+Default Volume Size
 
-</td>
+</th>
+</tr>
+<tr>
 <td valign="top" rowspan="7">
 
 `n2-standard-2`
@@ -1830,25 +1957,46 @@ Updating
 
 </td>
 </tr>
+</table>
+
+
+
+### Microsoft Azure
+
+You can use the machine types listed in the table with the following plans:
+
+-   Standard: Microsoft Azure \(technical name: `azure`\)
+-   Build Runtime: Microsoft Azure \(technical name: `build-runtime-azure`\)
+
+The `Standard_D_v3` machine types have been deprecated by Microsoft Azure and can no longer be provisioned. To avoid breaking existing configurations, these inputs are automatically mapped to the equivalent `Standard_Ds_v5` generation, so you do not need to adjust your configurations.
+
+**Microsoft Azure Machine Type Parameter**
+
+
+<table>
 <tr>
-<td valign="top" rowspan="20">
+<th valign="top">
 
-Standard: Microsoft Azure
+Default Value
 
-technical name: `azure`
+</th>
+<th valign="top">
 
-Build Runtime: Microsoft Azure
+Allowed Input \(Resolved Machine Type\)
 
-technical name: `build-runtime-azure`
+</th>
+<th valign="top">
 
-</td>
-<td valign="top" rowspan="20">
+Virtual Machine Size
 
-Provisioning
+</th>
+<th valign="top">
 
-Updating
+Default Volume Size
 
-</td>
+</th>
+</tr>
+<tr>
 <td valign="top" rowspan="20">
 
 `Standard_D2s`
@@ -2193,21 +2341,37 @@ Updating
 
 </td>
 </tr>
+</table>
+
+You can use the machine types listed in the table with the Test Demo and Development \(Azure Lite\) \(technical name: `azure_lite`\) plan.
+
+**Azure Lite Machine Types**
+
+
+<table>
 <tr>
-<td valign="top" rowspan="5">
+<th valign="top">
 
-Kyma Test Demo and Development \(Azure Lite\)
+Default Value
 
-technical name: `azure_lite`
+</th>
+<th valign="top">
 
-</td>
-<td valign="top" rowspan="5">
+Allowed Input \(Resolved Machine Type\)
 
-Provisioning
+</th>
+<th valign="top">
 
-Updating
+Virtual Machine Size
 
-</td>
+</th>
+<th valign="top">
+
+Default Volume Size
+
+</th>
+</tr>
+<tr>
 <td valign="top" rowspan="5">
 
 `Standard_D4s`
@@ -2297,159 +2461,41 @@ Updating
 
 </td>
 </tr>
+</table>
+
+
+
+### SAP Cloud Infrastructure
+
+You can use the machine types listed in the table with the SAP Cloud Infrastructure \(`sap-converged-cloud`\) plan.
+
+**SAP Cloud Infrastructure Machine Types**
+
+
+<table>
 <tr>
-<td valign="top" rowspan="7">
+<th valign="top">
 
-Standard: Alibaba Cloud
+Default Value
 
-technical name: `alicloud`
+</th>
+<th valign="top">
 
-</td>
-<td valign="top" rowspan="7">
+Allowed Input
 
-Provisioning
+</th>
+<th valign="top">
 
-Updating
+Virtual Machine Size
 
-</td>
-<td valign="top" rowspan="7">
+</th>
+<th valign="top">
 
-`ecs.g9i.large`
+Default Volume Size
 
-</td>
-<td valign="top">
-
-`ecs.g9i.large`
-
-</td>
-<td valign="top">
-
-2vCPU, 8GB RAM
-
-</td>
-<td valign="top">
-
-80 Gi
-
-</td>
+</th>
 </tr>
 <tr>
-<td valign="top">
-
-`ecs.g9i.xlarge`
-
-</td>
-<td valign="top">
-
-4vCPU, 16GB RAM
-
-</td>
-<td valign="top">
-
-80 Gi
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`ecs.g9i.2xlarge`
-
-</td>
-<td valign="top">
-
-8vCPU, 32GB RAM
-
-</td>
-<td valign="top">
-
-80 Gi
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`ecs.g9i.4xlarge`
-
-</td>
-<td valign="top">
-
-16vCPU, 64GB RAM
-
-</td>
-<td valign="top">
-
-94 Gi
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`ecs.g9i.8xlarge`
-
-</td>
-<td valign="top">
-
-32vCPU, 128GB RAM
-
-</td>
-<td valign="top">
-
-158 Gi
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`ecs.g9i.12xlarge`
-
-</td>
-<td valign="top">
-
-48vCPU, 192GB RAM
-
-</td>
-<td valign="top">
-
-222 Gi
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`ecs.g9i.16xlarge`
-
-</td>
-<td valign="top">
-
-64vCPU, 256GB RAM
-
-</td>
-<td valign="top">
-
-250 Gi
-
-</td>
-</tr>
-<tr>
-<td valign="top" rowspan="8">
-
-SAP Cloud Infrastructure
-
-technical name: `sap-converged-cloud`
-
-</td>
-<td valign="top" rowspan="8">
-
-Provisioning
-
-Updating
-
-</td>
 <td valign="top" rowspan="8">
 
 `g_c2_m8`
@@ -2592,34 +2638,184 @@ Updating
 </tr>
 </table>
 
-See an example input for the *Machine Type* parameter:
-
-> ### Sample Code:  
-> ```
-> "machineType": "mi.large"
-> ```
 
 
+### Alibaba Cloud
 
-### Machine Type in Additional Worker Node Pools
+You can use the machine types listed in the table with the standard Alibaba Cloud \(technical name: `alicloud`\) plan.
 
-In your additional worker node pools, you can use the general-purpose virtual machines listed in the [Machine Type Parameter](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__table_wd5_ppv_xzb) table and the following compute-intensive machine types.
-
-**Machine Type in Additional Worker Node Pools**
+**Alibaba Cloud Machine Types**
 
 
 <table>
 <tr>
 <th valign="top">
 
-Plan
+Default Value
 
 </th>
 <th valign="top">
 
-Supported Operation
+Allowed Input
 
 </th>
+<th valign="top">
+
+Virtual Machine Size
+
+</th>
+<th valign="top">
+
+Default Volume Size
+
+</th>
+</tr>
+<tr>
+<td valign="top" rowspan="7">
+
+`ecs.g9i.large`
+
+</td>
+<td valign="top">
+
+`ecs.g9i.large`
+
+</td>
+<td valign="top">
+
+2 vCPU, 8GB RAM
+
+</td>
+<td valign="top">
+
+80 Gi
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`ecs.g9i.xlarge`
+
+</td>
+<td valign="top">
+
+4 vCPU, 16GB RAM
+
+</td>
+<td valign="top">
+
+80 Gi
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`ecs.g9i.2xlarge`
+
+</td>
+<td valign="top">
+
+8 vCPU, 32GB RAM
+
+</td>
+<td valign="top">
+
+80 Gi
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`ecs.g9i.4xlarge`
+
+</td>
+<td valign="top">
+
+16 vCPU, 64GB RAM
+
+</td>
+<td valign="top">
+
+94 Gi
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`ecs.g9i.8xlarge`
+
+</td>
+<td valign="top">
+
+32 vCPU, 128GB RAM
+
+</td>
+<td valign="top">
+
+158 Gi
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`ecs.g9i.12xlarge`
+
+</td>
+<td valign="top">
+
+48 vCPU, 192GB RAM
+
+</td>
+<td valign="top">
+
+222 Gi
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`ecs.g9i.16xlarge`
+
+</td>
+<td valign="top">
+
+64 vCPU, 256GB RAM
+
+</td>
+<td valign="top">
+
+250 Gi
+
+</td>
+</tr>
+</table>
+
+
+
+### Machine Type in Additional Worker Node Pools
+
+In your additional worker node pools, you can use both the general-purpose and compute-intensive virtual machines. To see the compute-intensive machine types available for specific service plans, expand the table for your preferred IaaS provider.
+
+
+
+### Amazon Web Services
+
+You can use the machine types listed in the table with the following plans:
+
+-   Standard: Amazon Web Services \(technical name: `aws`\)
+-   Build Runtime: Amazon Web Services \(technical name: `build-runtime-aws`\)
+
+**AWS Machine Types in Additional Worker Node Pools**
+
+
+<table>
+<tr>
 <th valign="top">
 
 Allowed Input \(Resolved Machine Type\)
@@ -2642,24 +2838,6 @@ Availability Regions
 </th>
 </tr>
 <tr>
-<td valign="top" rowspan="14">
-
-Standard: Amazon Web Services
-
-technical name: `aws`
-
-Build Runtime: Amazon Web Services
-
-technical name: `build-runtime-aws`
-
-</td>
-<td valign="top" rowspan="14">
-
-Provisioning
-
-Updating
-
-</td>
 <td valign="top">
 
 `c7i.large`
@@ -2939,25 +3117,44 @@ Updating
 
 </td>
 </tr>
+</table>
+
+
+
+### Google Cloud
+
+You can use the machine types listed in the table with the following plans:
+
+-   Standard: Google Cloud \(technical name: `gcp`\)
+-   Build Runtime: Google Cloud \(technical name: `build-runtime-gcp`\)
+
+**Google Cloud Machine Types in Additional Worker Node Pools**
+
+
+<table>
 <tr>
-<td valign="top" rowspan="6">
+<th valign="top">
 
-Standard: Google Cloud
+Allowed Input \(Resolved Machine Type\)
 
-technical name: `gcp`
+</th>
+<th valign="top">
 
-Build Runtime: Google Cloud
+Virtual Machine Size
 
-technical name: `build-runtime-gcp`
+</th>
+<th valign="top">
 
-</td>
-<td valign="top" rowspan="6">
+Default Volume Size
 
-Provisioning
+</th>
+<th valign="top">
 
-Updating
+Availability Regions
 
-</td>
+</th>
+</tr>
+<tr>
 <td valign="top">
 
 `c2d-highcpu-2`
@@ -3076,25 +3273,44 @@ Updating
 
 </td>
 </tr>
+</table>
+
+
+
+### Microsoft Azure
+
+You can use the machine types listed in the table with the following plans:
+
+-   Standard: Microsoft Azure \(technical name: `azure`\)
+-   Build Runtime: Microsoft Azure \(technical name: `build-runtime-azure`\)
+
+**Microsoft Azure Machine Types in Additional Worker Node Pools**
+
+
+<table>
 <tr>
-<td valign="top" rowspan="7">
+<th valign="top">
 
-Standard: Microsoft Azure
+Allowed Input \(Resolved Machine Type\)
 
-technical name: `azure`
+</th>
+<th valign="top">
 
-Build Runtime: Microsoft Azure
+Virtual Machine Size
 
-technical name: `build-runtime-azure`
+</th>
+<th valign="top">
 
-</td>
-<td valign="top" rowspan="7">
+Default Volume Size
 
-Provisioning
+</th>
+<th valign="top">
 
-Updating
+Availability Regions
 
-</td>
+</th>
+</tr>
+<tr>
 <td valign="top">
 
 `Standard_F2s_v2`
@@ -3209,9 +3425,7 @@ All Microsoft Azure regions. See [Region\*](provisioning-and-updating-parameters
 </td>
 <td valign="top">
 
-64 vCPU,
-
-128 GB RAM
+64 vCPU, 128 GB RAM
 
 </td>
 <td valign="top">
@@ -3230,13 +3444,14 @@ All Microsoft Azure regions. See [Region\*](provisioning-and-updating-parameters
 
 With the *Modules* \(`modules`\) object, you can define which Kyma modules you want to provision in your cluster. You can also use it to create a cluster without any modules.
 
-> ### Note:  
-> API for module configuration is built on the `oneOf` feature from the JSON schema. If the `modules` object is passed to API, it must have only one valid option: *Default* \(`default`\) or *Custom* \(`list`\). Even if you remove the `modules` object from the JSON schema, the default Kyma modules are provisioned in your cluster.
+API for module configuration is built on the `oneOf` feature from the JSON schema. If the `modules` object is passed to API, it must have only one valid option: *Default* \(`default`\) or *Custom* \(`list`\).
+
+Even if you omit the `modules` object from the request, the default Kyma modules are provisioned in your cluster.
 
 > ### Remember:  
 > The parameters marked with an asterisk "\*" are mandatory.
 
-**Modules Parameters**
+**Modules Nested Parameters**
 
 
 <table>
@@ -3458,6 +3673,10 @@ Provisioning
 </tr>
 </table>
 
+
+
+### Configuration
+
 You have the default Kyma modules provisioned in your cluster if you do not provide the `modules` object in the JSON payload, or if you use the following input:
 
 > ### Sample Code:  
@@ -3485,7 +3704,7 @@ See an example of JSON input for a custom list of Kyma modules:
 > }
 > ```
 
-Applying the following values results in Kyma runtime provisioning without any Kyma modules.
+If you apply the following values, your Kyma runtime is provisioned without any Kyma modules.
 
 > ### Sample Code:  
 > ```
@@ -3507,12 +3726,12 @@ Applying the following values results in Kyma runtime provisioning without any K
 
 ## Networking
 
-The *Networking* \(`networking`\) object provides networking configuration. These values are immutable and cannot be updated later.
+With the *Networking* \(`networking`\) object, you provide networking configuration. These values are immutable and cannot be updated later.
 
 > ### Remember:  
 > The parameters marked with an asterisk "\*" are mandatory.
 
-**Networking Parameters**
+**Networking Nested Parameters**
 
 
 <table>
@@ -3570,12 +3789,12 @@ Provisioning
 </td>
 <td valign="top">
 
-*false* 
+`false` 
 
 </td>
 <td valign="top">
 
-*true* or *false*
+`true` or `false`
 
 </td>
 </tr>
@@ -3608,7 +3827,7 @@ Provisioning
 
 The CIDR range for nodes must not overlap with the following CIDRs: 10.242.0.0/16, 10.64.0.0/11, 10.254.0.0/16, 10.243.0.0/16, 192.168.123.0/24, 240.0.0.0/8.
 
-Also, the range for nodes must not overlap with those used for Pods or Services. That is also valid for the default ranges set for Pods or Services if you don’t provide your own.
+Also, the range for nodes must not overlap with those used for Pods or Services. The same restriction applies to the default ranges set for Pods or Services if you don’t provide your own.
 
 </td>
 </tr>
@@ -3641,7 +3860,7 @@ Provisioning
 
 CIDR range for Pods must not overlap with the following CIDRs: 10.242.0.0/16, 10.64.0.0/11, 10.254.0.0/16, 10.243.0.0/16, 192.168.123.0/24, 240.0.0.0/8.
 
-Also, the range for Pods must not overlap with those used for nodes or Services. That is also valid for the default range set for Services if you don’t provide your own.
+Also, the range for Pods must not overlap with those used for nodes or Services. The same restriction applies to the default range set for Services if you don’t provide your own.
 
 </td>
 </tr>
@@ -3672,9 +3891,9 @@ Provisioning
 </td>
 <td valign="top">
 
-CIDR range for Services must not overlap with the following CIDRs: 10.242.0.0/16, 10.64.0.0/11, 10.254.0.0/16, 10.243.0.0/16 192.168.123.0/24, 240.0.0.0/8.
+CIDR range for Services must not overlap with the following CIDRs: 10.242.0.0/16, 10.64.0.0/11, 10.254.0.0/16, 10.243.0.0/16, 192.168.123.0/24, 240.0.0.0/8.
 
-Also, the range for Services must not overlap with those used for nodes or Pods. That is also valid for the default range set for Pods if you don’t provide your own.
+Also, the range for Services must not overlap with those used for nodes or Pods. The same restriction applies to the default range set for Pods if you don’t provide your own.
 
 </td>
 </tr>
@@ -3685,8 +3904,8 @@ See the default JSON input for the `networking` object:
 > ### Sample Code:  
 > ```
 > "networking": {
->         "nodes": "10.250.0.0/16"
->         "pods": "10.96.0.0/13"
+>         "nodes": "10.250.0.0/16",
+>         "pods": "10.96.0.0/13",
 >         "services": "10.104.0.0/13"
 >     }
 > ```
@@ -3697,9 +3916,9 @@ See the default JSON input for the `networking` object:
 
 ## OpenID Connect \(OIDC\)
 
-The *OpenID Connect* \(OIDC\) \(`oidc`\) property can be configured in the following ways:
+With the *OpenID Connect* \(OIDC\) \(`oidc`\) parameter, you can configure a custom identity provider. You can configure the property in the following ways:
 
--   As a list of `oidc` objects
+-   As a list of `oidc` objects \(recommended\)
 -   As a single `oidc` object
 
 
@@ -3707,8 +3926,6 @@ The *OpenID Connect* \(OIDC\) \(`oidc`\) property can be configured in the follo
 ### OIDC Configured as a List of `oidc` Objects
 
 The*OpenID Connect* property is a list of `oidc` objects. You can use it to configure one or several `oidc` objects.
-
-For more information on the configuration options, see [Custom OpenID Connect Configuration](custom-openid-connect-configuration-97fc95d.md).
 
 > ### Remember:  
 > The parameters marked with an asterisk "\*" are mandatory.
@@ -3782,7 +3999,7 @@ n/a
 
 *Issuer URL\**
 
-btp CLI parameter: issuerURL
+btp CLI parameter: `issuerURL`
 
 type: string
 
@@ -3822,7 +4039,7 @@ type: string
 </td>
 <td valign="top">
 
-If provided, specifies the name of a custom OIDC claim for specifying user groups.
+If provided, specifies the name of a custom OIDC claim for identifying user groups.
 
 </td>
 <td valign="top">
@@ -3857,7 +4074,7 @@ type:string
 
 If specified, causes claims mapping to group names to be prefixed with the provided value.
 
-If not provided, the prefix defaults to `-` \(dash character without additional characters\), and disables prefixing.
+If not provided, the prefix defaults to `-` \(dash character without additional characters\), which disables prefixing.
 
 </td>
 <td valign="top">
@@ -4076,14 +4293,13 @@ The following example shows the default configuration of a list of `oidc` object
 > }
 > ```
 
+For more configuration options, see [Custom OpenID Connect Configuration](custom-openid-connect-configuration-97fc95d.md).
+
 
 
 ### OIDC Configured as a Single `oidc` Object
 
-> ### Note:  
-> This approach is not recommended. Use it only to maintain backward compatibility with existing automations.
-
-For more information on the configuration options, see [Custom OpenID Connect Configuration](custom-openid-connect-configuration-97fc95d.md).
+This approach is not recommended. Use it only to maintain backward compatibility with existing automations.
 
 > ### Remember:  
 > The parameters marked with an asterisk "\*" are mandatory.
@@ -4157,7 +4373,7 @@ n/a
 
 *Issuer URL\**
 
-btp CLI parameter: issuerURL
+btp CLI parameter: `issuerURL`
 
 type: string
 
@@ -4450,13 +4666,18 @@ The following example shows the default configuration of an `oidc` object. To re
 }
 ```
 
+For more configuration options, see [Custom OpenID Connect Configuration](custom-openid-connect-configuration-97fc95d.md).
+
 
 
 <a name="loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Region"/>
 
 ## Region\*
 
-*Region\** \(`region`\) is a mandatory string parameter, which defines a region where your cluster runs.
+Use the *Region\** \(`region`\) parameter \(string\) to define a region where your cluster runs.
+
+> ### Remember:  
+> The parameters marked with an asterisk "\*" are mandatory.
 
 **Region Parameter**
 
@@ -4465,7 +4686,7 @@ The following example shows the default configuration of an `oidc` object. To re
 <tr>
 <th valign="top">
 
-Plan
+Parameter
 
 </th>
 <th valign="top">
@@ -4473,6 +4694,69 @@ Plan
 Supported Operation
 
 </th>
+<th valign="top">
+
+Default Value
+
+</th>
+<th valign="top">
+
+Allowed Input
+
+</th>
+</tr>
+<tr>
+<td valign="top">
+
+*Region\**
+
+btp CLI parameter: `region`
+
+type: string
+
+</td>
+<td valign="top">
+
+Provisioning
+
+</td>
+<td valign="top">
+
+None
+
+</td>
+<td valign="top">
+
+Varies by plan. Expand the table for your preferred IaaS provider for the full list of available regions.
+
+</td>
+</tr>
+</table>
+
+Here is an example of the JSON input for the *Region* parameter:
+
+> ### Sample Code:  
+> ```
+> "region": "us-east-1"
+> ```
+
+The available regions vary by IaaS provider. Expand the table for your preferred provider to see the supported regions for specific service plans.
+
+
+
+### Amazon Web Services
+
+You can use the regions listed in the table with the following plans:
+
+-   Standard: Amazon Web Services \(`aws`\)
+-   Free \(`free`\)
+-   Build Runtime: Amazon Web Services \(`build-runtime-aws`\)
+
+**Amazon Web Services Regions**
+
+
+<table>
+<tr>
 <th valign="top">
 
 Region Technical Key
@@ -4485,34 +4769,14 @@ Region Name
 </th>
 </tr>
 <tr>
-<td valign="top" rowspan="12">
+<td valign="top">
 
-Standard: Amazon Web Services
-
-technical name: `aws`
-
-Free
-
-technical name: `free`
-
-Build Runtime: Amazon Web Services
-
-technical name: `build-runtime-aws`
-
-</td>
-<td valign="top" rowspan="12">
-
-Provisioning
+`eu-central-1`
 
 </td>
 <td valign="top">
 
-`eu-central-1`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
-
-</td>
-<td valign="top">
-
-Europe \(Frankfurt\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+Europe \(Frankfurt\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4524,7 +4788,7 @@ Europe \(Frankfurt\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-en
 </td>
 <td valign="top">
 
-Europe \(London\)
+Europe \(London\) <sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4536,7 +4800,7 @@ Europe \(London\)
 </td>
 <td valign="top">
 
-Europe \(Milan\)
+Europe \(Milan\) <sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4548,7 +4812,7 @@ Europe \(Milan\)
 </td>
 <td valign="top">
 
-Canada \(Montreal\)
+Canada \(Montreal\) <sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4567,12 +4831,24 @@ Brazil \(São Paulo\)
 <tr>
 <td valign="top">
 
-`us-east-1`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+`us-east-1`
 
 </td>
 <td valign="top">
 
-US East \(VA\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+US East \(VA\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`us-west-2`
+
+</td>
+<td valign="top">
+
+US West \(Oregon\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4591,12 +4867,12 @@ Japan \(Tokyo\)
 <tr>
 <td valign="top">
 
-`ap-northeast-2`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+`ap-northeast-2`
 
 </td>
 <td valign="top">
 
-South Korea \(Seoul\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+South Korea \(Seoul\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4608,63 +4884,62 @@ South Korea \(Seoul\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-e
 </td>
 <td valign="top">
 
-India \(Mumbai\)
+India \(Mumbai\) <sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
 <tr>
 <td valign="top">
 
-`ap-southeast-1`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+`ap-southeast-1`
 
 </td>
 <td valign="top">
 
-Singapore<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+Singapore<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
 <tr>
 <td valign="top">
 
-`ap-southeast-2`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+`ap-southeast-2`
 
 </td>
 <td valign="top">
 
-Australia \(Sydney\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+Australia \(Sydney\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
+</table>
+
+
+
+### Google Cloud Regions
+
+You can use the regions listed in the table with the following plans:
+
+-   Standard: Google Cloud \(`gcp`\)
+-   Build Runtime: Google Cloud \(`build-runtime-gcp`\)
+
+**Google Cloud Regions**
+
+
+<table>
 <tr>
-<td valign="top">
+<th valign="top">
 
-`us-west-2`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+Region Technical Key
 
-</td>
-<td valign="top">
+</th>
+<th valign="top">
 
-US West \(Oregon\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+Region Name
 
-</td>
+</th>
 </tr>
 <tr>
-<td valign="top" rowspan="13">
-
-Standard: Google Cloud
-
-technical name: `gcp`
-
-Build Runtime: Google Cloud
-
-technical name: `build-runtime-gcp`
-
-</td>
-<td valign="top" rowspan="13">
-
-Provisioning
-
-</td>
 <td valign="top">
 
 `europe-west3`
@@ -4672,7 +4947,7 @@ Provisioning
 </td>
 <td valign="top">
 
-Europe \(Frankfurt\)
+Europe \(Frankfurt\) <sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4691,108 +4966,12 @@ Europe \(Netherlands\)
 <tr>
 <td valign="top">
 
-`asia-south1`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+`us-central1`
 
 </td>
 <td valign="top">
 
-India \(Mumbai\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`us-central1`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
-
-</td>
-<td valign="top">
-
-US Central \(IA\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`asia-northeast2`
-
-</td>
-<td valign="top">
-
-Japan \(Osaka\)
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`me-central2`
-
-</td>
-<td valign="top">
-
-KSA \(Dammam\)
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`me-west1`
-
-</td>
-<td valign="top">
-
-Israel \(Tel Aviv\)
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`australia-southeast1`
-
-</td>
-<td valign="top">
-
-Australia \(Sydney\)
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`southamerica-east1`
-
-</td>
-<td valign="top">
-
-Brazil \(São Paulo\)
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`asia-northeast1`
-
-</td>
-<td valign="top">
-
-Japan \(Tokyo\)
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`asia-southeast1`
-
-</td>
-<td valign="top">
-
-Singapore \(Jurong West\)
+US Central \(IA\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4816,39 +4995,155 @@ North America \(Oregon\)
 </td>
 <td valign="top">
 
-North America \(Virginia\)
+North America \(Virginia\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
 <tr>
-<td valign="top" rowspan="15">
+<td valign="top">
 
-Standard: Microsoft Azure
-
-technical name: `azure`
-
-Kyma Test Demo and Development \(Azure Lite\)
-
-technical name: `azure_lite`
-
-Build Runtime: Microsoft Azure
-
-technical name: `build-runtime-azure`
-
-</td>
-<td valign="top" rowspan="15">
-
-Provisioning
+`southamerica-east1`
 
 </td>
 <td valign="top">
 
-`eastus`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+Brazil \(São Paulo\)
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`asia-south1`
 
 </td>
 <td valign="top">
 
-US East \(VA\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+India \(Mumbai\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`asia-south2`
+
+</td>
+<td valign="top">
+
+India \(Delhi\) <sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`asia-northeast2`
+
+</td>
+<td valign="top">
+
+Japan \(Osaka\)
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`asia-northeast1`
+
+</td>
+<td valign="top">
+
+Japan \(Tokyo\) <sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`asia-southeast1`
+
+</td>
+<td valign="top">
+
+Singapore \(Jurong West\)
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`australia-southeast1`
+
+</td>
+<td valign="top">
+
+Australia \(Sydney\)
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`me-central2`
+
+</td>
+<td valign="top">
+
+KSA \(Dammam\) <sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`me-west1`
+
+</td>
+<td valign="top">
+
+Israel \(Tel Aviv\)
+
+</td>
+</tr>
+</table>
+
+
+
+### Microsoft Azure Regions
+
+You can use the regions listed in the table with the following plans:
+
+-   Standard: Microsoft Azure \(`azure`\)
+-   Kyma Test Demo and Development \(Azure Lite\) \(`azure_lite`\)
+-   Build Runtime: Microsoft Azure \(`build-runtime-azure`\)
+
+**Microsoft Azure Regions**
+
+
+<table>
+<tr>
+<th valign="top">
+
+Region Technical Key
+
+</th>
+<th valign="top">
+
+Region Name
+
+</th>
+</tr>
+<tr>
+<td valign="top">
+
+`eastus`
+
+</td>
+<td valign="top">
+
+US East \(VA\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4879,12 +5174,12 @@ US Central \(IA\)
 <tr>
 <td valign="top">
 
-`westus2`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+`westus2`<sup></sup>
 
 </td>
 <td valign="top">
 
-US West \(WA\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+US West \(WA\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4927,12 +5222,24 @@ North EU \(Ireland\)
 <tr>
 <td valign="top">
 
-`westeurope`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+`westeurope`<sup></sup>
 
 </td>
 <td valign="top">
 
-Europe \(Netherlands\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+Europe \(Netherlands\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`switzerlandnorth`
+
+</td>
+<td valign="top">
+
+Switzerland \(Zurich\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>, <sup>[8](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_not_azure_lite)</sup>
 
 </td>
 </tr>
@@ -4944,7 +5251,7 @@ Europe \(Netherlands\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-
 </td>
 <td valign="top">
 
-Japan \(Tokyo\)
+Japan \(Tokyo\) <sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -4963,24 +5270,12 @@ Singapore
 <tr>
 <td valign="top">
 
-`australiaeast`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+`australiaeast`<sup></sup>
 
 </td>
 <td valign="top">
 
-Australia \(Sydney\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-`switzerlandnorth`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
-
-</td>
-<td valign="top">
-
-Switzerland \(Zurich\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+Australia \(Sydney\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -5011,41 +5306,54 @@ Canada \(Toronto\)
 <tr>
 <td valign="top">
 
-`chinanorth3`[<sup>5</sup>](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_azure_china)
+`chinanorth3`
 
 </td>
 <td valign="top">
 
-China \(North 3\)[<sup>5</sup>](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_azure_china)
+China \(North 3\) <sup>[9](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_china_on_azure)</sup>
 
 </td>
 </tr>
+</table>
+
+<sup>8</sup> Not available with the `azure_lite` plan.
+
+<sup>9</sup> This region is available only in the subaccount region cf-cn20 and is the sole region available within the Microsoft Azure \(`azure`\) plan in China.
+
+
+
+### SAP Cloud Infrastructure Regions
+
+You can use the regions listed in the table with the SAP Cloud Infrastructure \(`sap-converged-cloud`\) plan.
+
+For the exact mapping between the subaccount regions and the available IaaS regions, see [Regions for the Kyma Environment](../10-concepts/regions-for-the-kyma-environment-557ec3a.md).
+
+**Region Parameter**
+
+
+<table>
 <tr>
-<td valign="top" rowspan="7">
+<th valign="top">
 
-SAP Cloud Infrastructure
+Region Technical Key
 
-technical name: `sap-converged-cloud`
+</th>
+<th valign="top">
 
-</td>
-<td valign="top" rowspan="7">
+Region Name
 
-Provisioning
+</th>
+</tr>
+<tr>
+<td valign="top">
 
-> ### Note:  
-> For the exact mapping between the BTP regions and the available IaaS regions, see [Subaccount Regions](https://help.sap.com/docs/btp/sap-business-technology-platform-internal/regions-for-kyma-environment?version=Internal&state=DRAFT#subaccount-regions).
-
-
+`eu-de-1`
 
 </td>
 <td valign="top">
 
-`eu-de-1`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
-
-</td>
-<td valign="top">
-
-Germany \(Rot\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+Germany \(Rot\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -5064,12 +5372,12 @@ Germany \(Frankfurt\)
 <tr>
 <td valign="top">
 
-`na-us-1`<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+`na-us-1`
 
 </td>
 <td valign="top">
 
-US East \(Sterling\)<sup>[4](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__note_seed_regions)</sup>
+US East \(Sterling\)<sup>[7](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__footnote_colocate_cp)</sup>
 
 </td>
 </tr>
@@ -5121,19 +5429,31 @@ UAE \(Dubai\)
 
 </td>
 </tr>
+</table>
+
+
+
+### Alibaba Cloud Regions
+
+You can use the regions listed in the table with the Alibaba Cloud \(`alicloud`\) plan.
+
+**Alibaba Cloud Regions**
+
+
+<table>
 <tr>
-<td valign="top">
+<th valign="top">
 
-Alibaba Cloud
+Region Technical Key
 
-technical name: `alicloud`
+</th>
+<th valign="top">
 
-</td>
-<td valign="top">
+Region Name
 
-Provisioning
-
-</td>
+</th>
+</tr>
+<tr>
 <td valign="top">
 
 `cn-shanghai`
@@ -5147,20 +5467,7 @@ China \(Shanghai\)
 </tr>
 </table>
 
-> ### Note:  
-> <sup>4</sup> Supports the *Colocate Control Plane* feature.
-> 
-> For more information, see [Colocate Control Plane](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_shoot_and_seed).
-
-> ### Note:  
-> <sup>5</sup> This region is available only in the BTP region cf-cn20 and is the sole region available within the Microsoft Azure \(`azure`\) plan in China.
-
-Here is an example of the JSON input for the *Region* parameter:
-
-> ### Sample Code:  
-> ```
-> "region": "us-east-1"
-> ```
+<sup>7</sup> Supports the *Colocate Control Plane* feature. For more information, see [Colocate Control Plane](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_shoot_and_seed).
 
 **Related Information**  
 
@@ -5169,7 +5476,7 @@ Here is an example of the JSON input for the *Region* parameter:
 
 [Available Plans in the Kyma Environment](available-plans-in-the-kyma-environment-befe01d.md "Depending on your global account type, you have access to a different plan that specifies the cluster parameters for the Kyma environment.")
 
-[Regions for the Kyma Environment](../10-concepts/regions-for-the-kyma-environment-557ec3a.md "To work with the Kyma environment, you need to specify the region for both your subaccount and the cluster.")
+[Regions for the Kyma Environment](../10-concepts/regions-for-the-kyma-environment-557ec3a.md "To work with the Kyma environment, you must specify the region for both your subaccount and the cluster.")
 
 [Kyma Modules](../10-concepts/kyma-modules-0dda141.md "With Kyma's modular approach, you can install just the modules you need, instead of a predefined set of components.")
 

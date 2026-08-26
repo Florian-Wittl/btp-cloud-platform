@@ -2,7 +2,7 @@
 
 # Regions for the Kyma Environment
 
-To work with the Kyma environment, you need to specify the region for both your subaccount and the cluster.
+To work with the Kyma environment, you must specify the region for both your subaccount and the cluster.
 
 
 
@@ -13,7 +13,7 @@ To work with the Kyma environment, you need to specify the region for both your 
 
 ## Subaccount Regions
 
-The table lists the regions you can choose from when creating a subaccount.
+When you create a subaccount, choose one of the regions listed in the following table.
 
 **Subaccount Regions for Kyma**
 
@@ -58,7 +58,7 @@ Enterprise account
 
 Partner Test, Demo, and Development account
 
-Trial account [<sup>1</sup>](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_trial)
+Trial account <sup>[1](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_trial)</sup>
 
 </td>
 <td valign="top">
@@ -493,7 +493,9 @@ Switzerland \(Zurich\) EU Access
 </td>
 <td valign="top">
 
-`azure` 
+`azure`
+
+The only available cluster region is Switzerland \(Zurich\) \(`switzerlandnorth`\). See [Cluster Regions](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__section_uqf_2sl_wlb).
 
 </td>
 </tr>
@@ -520,12 +522,14 @@ cf-cn20
 </td>
 <td valign="top">
 
-China \(North 3\) [<sup>2</sup>](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_azure_china)
+China \(North 3\)
 
 </td>
 <td valign="top">
 
-`azure`
+`azure` 
+
+The only available cluster region is China \(North 3\) \(`chinanorth3`\). See [Cluster Regions](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__section_uqf_2sl_wlb).
 
 </td>
 </tr>
@@ -534,7 +538,7 @@ China \(North 3\) [<sup>2</sup>](regions-for-the-kyma-environment-557ec3a.md#loi
 
 Enterprise account
 
-Trial account [<sup>1</sup>](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_trial)
+Trial account <sup>[1](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_trial)</sup>
 
 </td>
 <td valign="top">
@@ -572,7 +576,7 @@ US East \(VA\)
 
 Enterprise account
 
-Trial account [<sup>1</sup>](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_trial)
+Trial account <sup>[1](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_trial)</sup>
 
 </td>
 <td valign="top">
@@ -636,6 +640,8 @@ Europe \(Frankfurt\) EU Access
 `aws`
 
 `build-runtime-aws`
+
+The only available cluster region is Europe \(Frankfurt\) \(`eu-central-1`\). See [Cluster Regions](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__section_uqf_2sl_wlb).
 
 </td>
 </tr>
@@ -1036,6 +1042,38 @@ India \(Mumbai\)
 `gcp`
 
 `build-runtime-gcp`
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+Enterprise account
+
+</td>
+<td valign="top">
+
+in31
+
+</td>
+<td valign="top">
+
+Google Cloud
+
+</td>
+<td valign="top">
+
+cf-in31
+
+</td>
+<td valign="top">
+
+India \(Delhi\)
+
+</td>
+<td valign="top">
+
+`gcp` 
 
 </td>
 </tr>
@@ -1555,11 +1593,7 @@ China \(Shanghai\)
 </tr>
 </table>
 
-> ### Note:  
-> <sup>1</sup> A trial Kyma instance is available only on request. For more information, see [Getting Started with a Trial Kyma Instance](../20-getting-started/getting-started-with-a-trial-kyma-instance-ccb83c7.md).
-
-> ### Note:  
-> <sup>2</sup> This region is available only in the BTP region cf-cn20 and is the sole region available within the Microsoft Azure \(`azure`\) plan in China.
+<sup>1</sup> A trial Kyma instance is available only on request. For more information, see [Getting Started with a Trial Kyma Instance](../20-getting-started/getting-started-with-a-trial-kyma-instance-ccb83c7.md).
 
 
 
@@ -1567,23 +1601,23 @@ China \(Shanghai\)
 
 ## Cluster Regions
 
-When you enable a Kyma environment for a given subaccount, you must select a plan and region where the cluster is going to be created. Note that there is a number of regions available within each plan. They are all listed in the table:
+When you enable a Kyma environment for a given subaccount, you must select a service plan and region where for your cluster. The available regions vary by IaaS provider and service plan. By default, any cluster region can be used with any subaccount region within a service plan. Exceptions are noted in the Subaccount Regions table. To see the supported regions for specific service plans, expand the table for your preferred IaaS provider.
 
-**Cluster Regions**
+
+
+### Microsoft Azure
+
+The following regions are available with these service plans:
+
+-   Standard: Microsoft Azure \(`azure`\)
+-   Kyma Test Demo and Development \(Azure Lite\) \(`azure_lite`\)
+-   Build Runtime: Microsoft Azure \(`build-runtime-azure`\)
+
+**Microsoft Azure Cluster Regions**
 
 
 <table>
 <tr>
-<th valign="top">
-
-IaaS Provider
-
-</th>
-<th valign="top">
-
-Plan ID
-
-</th>
 <th valign="top">
 
 Region
@@ -1594,22 +1628,13 @@ Region
 Region Name
 
 </th>
+<th valign="top">
+
+Azure Subaccount Regions
+
+</th>
 </tr>
 <tr>
-<td valign="top" rowspan="15">
-
-Microsoft Azure
-
-</td>
-<td valign="top" rowspan="15">
-
-`azure`
-
-`azure_lite`
-
-`build-runtime-azure`
-
-</td>
 <td valign="top">
 
 `centralus`
@@ -1618,6 +1643,11 @@ Microsoft Azure
 <td valign="top">
 
 US Central \(IA\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1632,6 +1662,11 @@ US Central \(IA\)
 US East \(VA\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1642,6 +1677,11 @@ US East \(VA\)
 <td valign="top">
 
 US East 2 \(VA\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1656,6 +1696,11 @@ US East 2 \(VA\)
 US West \(WA\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1666,6 +1711,11 @@ US West \(WA\)
 <td valign="top">
 
 North EU \(Ireland\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1680,6 +1730,11 @@ North EU \(Ireland\)
 UK South \(London\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1692,6 +1747,11 @@ UK South \(London\)
 Europe \(Frankfurt\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1701,7 +1761,12 @@ Europe \(Frankfurt\)
 </td>
 <td valign="top">
 
-Switzerland \(Zurich\)
+Switzerland \(Zurich\) <sup>[2](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_switzerlandnorth)</sup>
+
+</td>
+<td valign="top">
+
+ch20 only
 
 </td>
 </tr>
@@ -1716,6 +1781,11 @@ Switzerland \(Zurich\)
 Europe \(Netherlands\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1726,6 +1796,11 @@ Europe \(Netherlands\)
 <td valign="top">
 
 Singapore
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1740,6 +1815,11 @@ Singapore
 Australia \(Sydney\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1750,6 +1830,11 @@ Australia \(Sydney\)
 <td valign="top">
 
 Japan \(Tokyo\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1764,6 +1849,11 @@ Japan \(Tokyo\)
 Brazil \(São Paulo\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1776,32 +1866,64 @@ Brazil \(São Paulo\)
 Canada \(Toronto\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
 
-`chinanorth3` [<sup>2</sup>](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_azure_china)
+`chinanorth3` 
 
 </td>
 <td valign="top">
 
-China \(North 3\) [<sup>2</sup>](regions-for-the-kyma-environment-557ec3a.md#loio557ec3adc3174ed4914ec9d6d13487cf__footnote_azure_china)
+China \(North 3\)
+
+</td>
+<td valign="top">
+
+cn20 only
 
 </td>
 </tr>
+</table>
+
+<sup>2</sup> Not available with the `azure_lite` plan.
+
+
+
+### Amazon Web Services
+
+The following regions are available with these service plans:
+
+-   Standard: Amazon Web Services \(`aws`\)
+-   Build Runtime: Amazon Web Services \(`build-runtime-aws`\)
+
+**AWS Cluster Regions**
+
+
+<table>
 <tr>
-<td valign="top" rowspan="15">
+<th valign="top">
 
-Amazon Web Services
+Region
 
-</td>
-<td valign="top" rowspan="12">
+</th>
+<th valign="top">
 
-`aws`
+Region Name
 
-`build-runtime-aws`
+</th>
+<th valign="top">
 
-</td>
+AWS Subaccount Regions
+
+</th>
+</tr>
+<tr>
 <td valign="top">
 
 `eu-central-1`
@@ -1810,6 +1932,11 @@ Amazon Web Services
 <td valign="top">
 
 Europe \(Frankfurt\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1824,6 +1951,11 @@ Europe \(Frankfurt\)
 Europe \(London\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1834,6 +1966,11 @@ Europe \(London\)
 <td valign="top">
 
 Europe \(Milan\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1848,6 +1985,11 @@ Europe \(Milan\)
 Canada \(Montreal\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1860,6 +2002,11 @@ Canada \(Montreal\)
 Brazil \(São Paulo\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1870,6 +2017,11 @@ Brazil \(São Paulo\)
 <td valign="top">
 
 US East \(VA\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1884,6 +2036,11 @@ US East \(VA\)
 Japan \(Tokyo\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1894,6 +2051,11 @@ Japan \(Tokyo\)
 <td valign="top">
 
 South Korea \(Seoul\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1908,6 +2070,11 @@ South Korea \(Seoul\)
 India \(Mumbai\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1918,6 +2085,11 @@ India \(Mumbai\)
 <td valign="top">
 
 Singapore
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1932,6 +2104,11 @@ Singapore
 Australia \(Sydney\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1944,13 +2121,38 @@ Australia \(Sydney\)
 US West \(Oregon\)
 
 </td>
-</tr>
-<tr>
-<td valign="top" rowspan="3">
+<td valign="top">
 
-`trial`
+All
 
 </td>
+</tr>
+</table>
+
+The following regions are available with the trial \(`trial`\) plan.
+
+**AWS Trial Cluster Regions**
+
+
+<table>
+<tr>
+<th valign="top">
+
+Region
+
+</th>
+<th valign="top">
+
+Region Name
+
+</th>
+<th valign="top">
+
+AWS Subaccount Regions
+
+</th>
+</tr>
+<tr>
 <td valign="top">
 
 `eu-central-1`
@@ -1959,6 +2161,11 @@ US West \(Oregon\)
 <td valign="top">
 
 Europe \(Frankfurt\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -1973,6 +2180,11 @@ Europe \(Frankfurt\)
 US East \(VA\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -1985,20 +2197,45 @@ US East \(VA\)
 Singapore
 
 </td>
+<td valign="top">
+
+All
+
+</td>
+</tr>
+</table>
+
+
+
+### Google Cloud
+
+The following regions are available with these service plans:
+
+-   Standard: Google Cloud \(`gcp`\)
+-   Build Runtime: Google Cloud \(`build-runtime-gcp`\)
+
+**Google Cloud Cluster Regions**
+
+
+<table>
+<tr>
+<th valign="top">
+
+Region
+
+</th>
+<th valign="top">
+
+Region Name
+
+</th>
+<th valign="top">
+
+GCP Subaccount Regions
+
+</th>
 </tr>
 <tr>
-<td valign="top" rowspan="13">
-
-Google Cloud
-
-</td>
-<td valign="top" rowspan="13">
-
-`gcp`
-
-`build-runtime-gcp`
-
-</td>
 <td valign="top">
 
 `europe-west3`
@@ -2007,6 +2244,11 @@ Google Cloud
 <td valign="top">
 
 Europe \(Frankfurt\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -2021,6 +2263,11 @@ Europe \(Frankfurt\)
 Europe \(Netherlands\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -2031,6 +2278,11 @@ Europe \(Netherlands\)
 <td valign="top">
 
 US Central \(IA\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -2045,6 +2297,28 @@ US Central \(IA\)
 India \(Mumbai\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`asia-south2`
+
+</td>
+<td valign="top">
+
+India \(Delhi\)
+
+</td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -2055,6 +2329,11 @@ India \(Mumbai\)
 <td valign="top">
 
 Japan \(Osaka\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -2069,6 +2348,11 @@ Japan \(Osaka\)
 KSA \(Dammam\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -2079,6 +2363,11 @@ KSA \(Dammam\)
 <td valign="top">
 
 Israel \(Tel Aviv\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -2093,6 +2382,11 @@ Israel \(Tel Aviv\)
 Australia \(Sydney\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -2103,6 +2397,11 @@ Australia \(Sydney\)
 <td valign="top">
 
 Brazil \(São Paulo\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -2117,6 +2416,11 @@ Brazil \(São Paulo\)
 Japan \(Tokyo\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -2127,6 +2431,11 @@ Japan \(Tokyo\)
 <td valign="top">
 
 Singapore \(Jurong West\)
+
+</td>
+<td valign="top">
+
+All
 
 </td>
 </tr>
@@ -2141,6 +2450,11 @@ Singapore \(Jurong West\)
 North America \(Oregon\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -2153,18 +2467,42 @@ North America \(Oregon\)
 North America \(Virginia\)
 
 </td>
+<td valign="top">
+
+All
+
+</td>
+</tr>
+</table>
+
+
+
+### SAP Cloud Infrastructure
+
+The following regions are available with the SAP Cloud Infrastructure \(`sap-converged-cloud`\) plan.
+
+**SAP Cloud Infrastructure Cluster Regions**
+
+
+<table>
+<tr>
+<th valign="top">
+
+Region
+
+</th>
+<th valign="top">
+
+Region Name
+
+</th>
+<th valign="top">
+
+SAP Cloud Infrastructure Subaccount Regions
+
+</th>
 </tr>
 <tr>
-<td valign="top" rowspan="7">
-
-SAP Cloud Infrastructure
-
-</td>
-<td valign="top" rowspan="7">
-
-`sap-converged-cloud`
-
-</td>
 <td valign="top">
 
 `eu-de-1`
@@ -2173,6 +2511,11 @@ SAP Cloud Infrastructure
 <td valign="top">
 
 Germany \(Rot\)
+
+</td>
+<td valign="top">
+
+eu02
 
 </td>
 </tr>
@@ -2187,6 +2530,11 @@ Germany \(Rot\)
 Germany \(Frankfurt\)
 
 </td>
+<td valign="top">
+
+eu01
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -2197,6 +2545,11 @@ Germany \(Frankfurt\)
 <td valign="top">
 
 US East \(Sterling\)
+
+</td>
+<td valign="top">
+
+us01
 
 </td>
 </tr>
@@ -2211,6 +2564,11 @@ US East \(Sterling\)
 US West \(Colorado\)
 
 </td>
+<td valign="top">
+
+us02
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -2221,6 +2579,11 @@ US West \(Colorado\)
 <td valign="top">
 
 Australia \(Sydney\)
+
+</td>
+<td valign="top">
+
+ap01
 
 </td>
 </tr>
@@ -2235,6 +2598,11 @@ Australia \(Sydney\)
 Japan \(Tokyo\)
 
 </td>
+<td valign="top">
+
+jp01
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -2247,18 +2615,42 @@ Japan \(Tokyo\)
 UAE \(Dubai\)
 
 </td>
+<td valign="top">
+
+ae01
+
+</td>
+</tr>
+</table>
+
+
+
+### Alibaba Cloud
+
+The following region is available with the Alibaba Cloud \(`alicloud`\) plan.
+
+**Alibaba Cloud Cluster Regions**
+
+
+<table>
+<tr>
+<th valign="top">
+
+Region
+
+</th>
+<th valign="top">
+
+Region Name
+
+</th>
+<th valign="top">
+
+Alibaba Cloud Subaccount Regions
+
+</th>
 </tr>
 <tr>
-<td valign="top">
-
-Alibaba Cloud
-
-</td>
-<td valign="top">
-
-`alicloud`
-
-</td>
 <td valign="top">
 
 `cn-shanghai`
@@ -2267,6 +2659,11 @@ Alibaba Cloud
 <td valign="top">
 
 China \(Shanghai\)
+
+</td>
+<td valign="top">
+
+cn40
 
 </td>
 </tr>
@@ -2278,7 +2675,7 @@ China \(Shanghai\)
 
 ## Load Balancers
 
-Depending on the IaaS Provider, the following Load Balancers are provisioned by default:
+Depending on the IaaS provider, the following load balancers are provisioned by default:
 
 **Default Load Balancers**
 
@@ -2334,7 +2731,7 @@ External passthrough Network Load Balancer
 </tr>
 </table>
 
-For more details on the Load Balancers and their features, check out the official documentation of the respective IaaS provider.
+For more information about the load balancers and their features, see the official documentation of the respective IaaS provider.
 
 **Related Information**  
 
