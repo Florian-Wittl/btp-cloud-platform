@@ -14,9 +14,6 @@ To configure the cluster parameters, you can use your preferred interface, the S
 
 To check which parameters are available for configuration in a particular plan, see [Available Plans in the Kyma Environment](available-plans-in-the-kyma-environment-befe01d.md).
 
-> ### Remember:  
-> The parameters marked with an asterisk "\*" are mandatory.
-
 
 
 <a name="loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Access_Control_List"/>
@@ -2798,7 +2795,7 @@ Default Volume Size
 
 
 
-### Machine Type in Additional Worker Node Pools
+### Machine Types in Additional Worker Node Pools
 
 In your additional worker node pools, you can use both the general-purpose and compute-intensive virtual machines. To see the compute-intensive machine types available for specific service plans, expand the table for your preferred IaaS provider.
 
@@ -3601,7 +3598,7 @@ type: string
 </td>
 <td valign="top">
 
-Look up the available Kyma modules and their technical names at [Kyma Modules](../10-concepts/kyma-modules-0dda141.md).
+Look up the available Kyma modules at [Kyma Modules](../10-concepts/kyma-modules-0dda141.md).
 
 </td>
 <td valign="top">
@@ -4067,7 +4064,7 @@ n/a
 
 btp CLI parameter: `groupsPrefix`
 
-type:string
+type: string
 
 </td>
 <td valign="top">
@@ -4441,7 +4438,7 @@ n/a
 
 btp CLI parameter: `groupsPrefix`
 
-type:string
+type: string
 
 </td>
 <td valign="top">

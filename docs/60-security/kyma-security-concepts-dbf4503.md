@@ -162,9 +162,18 @@ The Kubernetes etcd fulfills the following DISA STIGs requirements:
 
 ## Kubernetes Worker Nodes
 
-Kyma uses [Garden Linux](https://github.com/gardenlinux/gardenlinux) as its node operating system. Garden Linux is a Linux distribution with a minimal set of applications optimized for use in Gardener landscapes. Kubernetes worker nodes use a kubectl version higher than 1.12.9 \(V-242396\).
+Kubernetes worker nodes use a kubectl version higher than 1.12.9 \(V-242396\).
 
 
+
+### Node Operating System
+
+Kyma uses [Garden Linux](https://github.com/gardenlinux/gardenlinux) as its node operating system. Garden Linux is a Linux distribution with a minimal set of applications optimized for use in containerized environments.
+
+-   Node operating system images are hardened and audited.
+-   Malware scans and vulnerability scans are performed as part of the release process of the node operating system images. For more information, see [Security Vulnerability Management in the Kyma Environment](security-vulnerability-management-in-the-kyma-environment-b1b0a64.md).
+-   The node operating system is immutable.
+-   Remote access to nodes is disabled and nodes are not exposed to the Internet.
 
 
 
@@ -236,9 +245,9 @@ All communication in the Kyma cluster is encrypted using TLS 1.2.
 
 ### Authentication at the API Server
 
-By default, a SAP BTP, Kyma runtime cluster is deployed with a shared tenant of SAP Cloud Identity Services provided by SAP. This Identity Provider \(IDP\) uses OIDC tokens to authenticate and is configured to enforce multi-factor authentication.
+By default, a SAP BTP, Kyma runtime cluster is deployed with a shared tenant of SAP Cloud Identity Services provided by SAP. This identity provider \(IdP\) uses OIDC tokens to authenticate and is configured to enforce multi-factor authentication.
 
-As a best practice, you, the customer, can change the IdP to one controlled by you. This gives you control over the identity lifecycle of your accounts. For details, see [Configuring a Custom Identity Provider for Kyma](configuring-a-custom-identity-provider-for-kyma-67bcc6e.md).
+As a best practice, you, the customer, can change the identity provider to one controlled by you. This gives you control over the identity lifecycle of your accounts. For details, see [Configuring a Custom Identity Provider for Kyma](configuring-a-custom-identity-provider-for-kyma-67bcc6e.md).
 
 The Kubernetes API Server fulfills the following DISA STIGs requirements:
 
