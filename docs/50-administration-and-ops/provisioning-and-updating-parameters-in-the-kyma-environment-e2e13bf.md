@@ -10,7 +10,7 @@ When creating a Kyma cluster, you can configure various parameters to adjust it 
 
 ## Overview
 
-To configure the cluster parameters, you can use your preferred interface, the SAP BTP cockpit, or the command line interface \(btp CLI\).
+To configure the cluster parameters, you can use your preferred interface, the SAP BTP cockpit, or the SAP BTP command line interface \(btp CLI\).
 
 To check which parameters are available for configuration in a particular plan, see [Available Plans in the Kyma Environment](available-plans-in-the-kyma-environment-befe01d.md).
 
