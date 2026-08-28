@@ -8,10 +8,9 @@ To use a Kyma module, you must add it first. Use Kyma dashboard or Kyma CLI to d
 
 ## Context
 
-> ### Tip:  
-> -   To see which modules you have in your cluster, go to Kyma dashboard and under *Cluster Overview*, choose *Modify Modules*.
-> 
-> -   If you prefer Kyma CLI, run `kyma module list`.
+To see which modules you have in your cluster, go to Kyma dashboard and under *Cluster Overview*, choose *Modify Modules*.
+
+If you prefer Kyma CLI, run `kyma module list`.
 
 <a name="task_ux4_wxz_bfc"/>
 
@@ -22,6 +21,11 @@ To use a Kyma module, you must add it first. Use Kyma dashboard or Kyma CLI to d
 
 
 ## Context
+
+> ### Caution:  
+> If you apply cluster-wide security tools or policies to your cluster, configure them to exclude Kyma-managed namespaces and components. Policies that go beyond the platform defaults can block module installation and reconciliation. Kyma modules are not modified to comply with custom security policies.
+> 
+> Do not make changes in any Kyma-managed namespaces, the `kube-system` namespace, or to any resources marked with *Do Not Edit*. Changes to those resources could lead to exclusion or disruptions from the agreed SLA. If you decide to make changes despite this, consult support in advance, and proceed with caution. To identify a Kyma-managed namespace, check if it has the `operator.kyma-project.io/managed-by: kyma` label.
 
 
 
