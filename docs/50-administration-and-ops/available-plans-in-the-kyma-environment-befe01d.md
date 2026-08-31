@@ -10,7 +10,7 @@ Depending on your global account type, you have access to a different plan that 
 
 ## Trial
 
-The trial version of SAP BTP, Kyma runtime is available only on request. For more information, see [Getting Started with a Trial Kyma Instance](../20-getting-started/getting-started-with-a-trial-kyma-instance-ccb83c7.md)
+The trial version of SAP BTP, Kyma runtime is available only on request. For more information, see [Getting Started with a Trial Kyma Instance](../20-getting-started/getting-started-with-a-trial-kyma-instance-ccb83c7.md).
 
 For details on the trial cluster specification, see [Scope and Limitations](../20-getting-started/about-the-trial-kyma-instance-c4fff0f.md#loioc4fff0f58f90424f8e0af28975ac7f0f__section_scope_limitations).
 
@@ -935,6 +935,32 @@ Updating
 <td valign="top">
 
 [Additional Worker Node Pools](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Additional_WN_Pools)
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+*Access Control List* 
+
+btp CLI parameter: `accessControlList`
+
+</td>
+<td valign="top">
+
+Specifies the IP ranges that can access the Kubernetes API.
+
+</td>
+<td valign="top">
+
+Provisioning
+
+Updating
+
+</td>
+<td valign="top">
+
+[Access Control List](provisioning-and-updating-parameters-in-the-kyma-environment-e2e13bf.md#loioe2e13bfaa2f54a4fb179f0f1f840353a__section_Access_Control_List)
 
 </td>
 </tr>

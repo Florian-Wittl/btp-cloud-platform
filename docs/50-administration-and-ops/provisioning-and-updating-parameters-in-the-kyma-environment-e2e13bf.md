@@ -42,11 +42,6 @@ Supported Operation
 </th>
 <th valign="top">
 
-Supported Plan
-
-</th>
-<th valign="top">
-
 Default Value
 
 </th>
@@ -69,13 +64,6 @@ btp CLI parameter: `accessControlList`
 Provisioning
 
 Updating
-
-</td>
-<td valign="top">
-
-Standard: Amazon Web Services \(`aws`\) and Microsoft Azure \(`azure`\)
-
-Build Runtime: Amazon Web Services \(`build-runtime-aws)` and Microsoft Azure \(`build-runtime-azure`\)
 
 </td>
 <td valign="top">
