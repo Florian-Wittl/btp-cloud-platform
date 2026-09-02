@@ -2,7 +2,7 @@
 
 # Tomcat 10
 
-By default, web applications pushed with SAP Java Buildpack 2 are running in an Apache Tomcat 10 container.
+By default, web applications pushed with SAP Java Buildpack are running in an Apache Tomcat 10 container.
 
 Applications can explicitly define the target application container by using the TARGET\_RUNTIME environment variable in the application's `manifest.yml` file.
 
@@ -52,12 +52,7 @@ tomcat
 </td>
 <td valign="top">
 
-**Apache Tomcat 10.1.x**
-
-> ### Note:  
-> Only relevant for SAP Java Buildpack 2!
-
-
+**Apache Tomcat 10.1.x** 
 
 </td>
 <td valign="top">
@@ -90,7 +85,7 @@ For a full list of specification versions, see: [Apache Tomcat Versions](https:/
 
 ## Customize the buildpack defaults
 
-SAP Java Buildpack 2 provides some default configurations for the Apache Tomcat 10 application container. They can be customized by the application with the [Resource Configuration](resource-configuration-c893e9c.md) feature.
+SAP Java Buildpack provides some default configurations for the Apache Tomcat 10 application container. They can be customized by the application with the [Resource Configuration](resource-configuration-c893e9c.md) feature.
 
 Below is a list of all the placeholders than can be customized by the application, along with their default values:
 
@@ -303,7 +298,7 @@ Configurations in the **manifest.yml** file:
 
 ## Configure the maximum number of active sessions
 
-SAP Java Buildpack 2 provides the default configurations for unlimited sessions for the Apache Tomcat 10 application container. They can be customized by the application with the [Resource Configuration](resource-configuration-c893e9c.md) feature. To limit the number of active sessions, set the **`maxActiveSessions`** attribute of the `Manager` element in the application's `context.xml` file:
+SAP Java Buildpack provides the default configurations for unlimited sessions for the Apache Tomcat 10 application container. They can be customized by the application with the [Resource Configuration](resource-configuration-c893e9c.md) feature. To limit the number of active sessions, set the **`maxActiveSessions`** attribute of the `Manager` element in the application's `context.xml` file:
 
 > ### Example:  
 > ```

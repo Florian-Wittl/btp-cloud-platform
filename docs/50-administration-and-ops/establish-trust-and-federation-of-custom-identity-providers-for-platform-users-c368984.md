@@ -73,7 +73,7 @@ Establish a trust relationship with a custom identity provider in your global ac
     > 
     > The whole origin key including `-platform` can have at maximum 36 characters. Only use the following characters for the origin key of the trust configuration.
     > 
-    > `aA`–`zZ`, `0`–`9`, `-` \(hyphen\), `_` \(underscore\)
+    > `aA`–`zZ`, `0`–`9`, `-` \(hyphen\)
 
 5.  Choose your desired domain of the tenant and continue with *Next*. For a good single sign-on experience, choose the same domain for all SAP BTP accounts and non SAP BTP applications that use this tenant.
 

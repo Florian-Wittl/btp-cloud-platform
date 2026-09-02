@@ -14,14 +14,18 @@ Before you start investigating the problem, download the logs for the current de
 
 
 > ### Note:  
-> Note that the operation logs are kept for 3 days. Make sure that you download them before the retention period expires
+> Note that the operation logs are kept for 3 days. Make sure that you download them before the retention period expires.
 
 To download the logs, execute the following command:
 
-`cf dmol -i <process-id>`
+```
+cf dmol -i <process-id>
+```
 
 > ### Example:  
 > `cf dmol -i cbe58aeb-0c40-4a3e-972d-82a499815745`
+
+For more information, see [MTA Operations History and Logs](mta-operations-history-and-logs-c55d858.md).
 
 
 
@@ -37,5 +41,5 @@ If the list does not contain a solution for your issue, you can contact the serv
 
 1.  Select the component *BC-CP-CF-DS* from the *Component* dropdown list.
 2.  In the description field, provide as much information as possible about the Cloud Foundry region, Cloud Foundry organization and space names and/or Global Unique Identifiers.
-3.  Provide information about scenario with the exact steps to be reproduced, expected result, actual result or the error that appears, relevant logs and screenshots. In all cases, the starting point for the investigation are the Multitarget Application operation logs.
+3.  Provide information about scenario with the exact steps to be reproduced, expected result, actual result or the error that appears, relevant logs and screenshots. In all cases, the starting point for the investigation are the multitarget application operation logs.
 

@@ -2,19 +2,17 @@
 
 # Runtimes and Containers
 
-Find out which application runtimes and containers you can use, depending on the Java buildpack your application is using.
+Find out the available application runtimes and containers you can use for your Java applications.
 
 
 
--   [TomEE 7 – DEPRECATED!](tomee-7-deprecated-79c039a.md) – use this runtime only with SAP Java Buildpack 1
+-   [TomEE 10](tomee-10-66e808e.md) 
 
--   [TomEE 10](tomee-10-66e808e.md) – use this runtime only with SAP Java Buildpack 2
+-   [Tomcat 10](tomcat-10-97d0e34.md) 
 
--   [Tomcat 9 – DEPRECATED!](tomcat-9-deprecated-ddfc101.md) – use this runtime only with SAP Java Buildpack 1
+-   [Tomcat 11](tomcat-11-7c854a1.md)
 
--   [Tomcat 10](tomcat-10-97d0e34.md) – use this runtime only with SAP Java Buildpack 2
-
--   [Java Main](java-main-8a1786a.md) – use the Java Main container with all Java buildpacks
+-   [Java Main](java-main-8a1786a.md) 
 
 
 **Related Information**  

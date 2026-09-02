@@ -93,13 +93,11 @@ You have set up and integrated SAP Business Application Studio. See [Setup of UI
     11. In your package, expand the folder *Cloud Identity and Access Management –\> IAM Apps* and you will see your newly created IAM app with the application name you specified in step g\) and the suffix UI5A.
     12. Open your newly created IAM App in the *IAM Apps* folder. In the *Overview* tab, enter the *Fiori Launchpad App Description Item ID* that was generated automatically in your *Fiori User Interface folder –\> FLP Descriptor Items* called `<BSP application name>_UI5R`.
 
-    13. Open your newly created IAM App in the *IAM Apps* folder. On the *Overview* tab, enter the *Fiori Launchpad App Description Item ID* that was generated automatically in your *Fiori User Interface folder –\> FLP Descriptor Items* called `<BSP application name>_UI5R`.
+    13. Open the *Services* tab, which will now list the services used by your application variant. Choose *Synchronize*.
 
-    14. Open the *Services* tab, which will now list the services used by your application variant. Choose *Synchronize*.
+    14. Open the *Authorizations* tab and maintain authorizations for your application variant and choose *Save*.
 
-    15. Open the *Authorizations* tab and maintain authorizations for your application variant and choose *Save*.
-
-    16. You need to publish your IAM app locally, to do this choose the *Publish Locally* button on the top right of the screen.
+    15. You need to publish your IAM app locally, to do this choose the *Publish Locally* button on the top right of the screen.
 
 
 2.  Once you have created your IAM app, you have to create a business catalog. See [Creating a Business Catalog \(Developer\)](https://help.sap.com/docs/btp/sap-business-technology-platform/iam-creating-business-catalog?version=Cloud).

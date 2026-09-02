@@ -1,5 +1,7 @@
 <!-- loio0039cf082d3d43eba9200fe15647922a -->
 
+<link rel="stylesheet" type="text/css" href="../css/sap-icons.css"/>
+
 # Role Collections and Roles in Global Accounts, Directories, and Subaccounts
 
 SAP BTP provides a set of role collections to set up administrator access to your global account and subaccounts.
@@ -118,7 +120,7 @@ User and Role Administrator
 </td>
 <td valign="top">
 
-Manage authorizations, trusted identity providers, and users.
+Manage authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes).
 
 The *xsuaa\_admin* role template provides this role. You find the role template in the SAP BTP Cockpit if you choose the *xsuaa!*<suffix\>** application identifier.
 
@@ -284,7 +286,7 @@ User and Role Administrator
 </td>
 <td valign="top">
 
-Manage authorizations, trusted identity providers, and users. 
+Manage authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>
@@ -542,7 +544,7 @@ User and Role Auditor
 </td>
 <td valign="top">
 
-Read-only access for authorizations, trusted identity providers, and users. 
+Read-only access for authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>
@@ -670,7 +672,7 @@ User and Role Auditor
 </td>
 <td valign="top">
 
-Read-only access for authorizations, trusted identity providers, and users. 
+Read-only access for authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>
@@ -737,7 +739,7 @@ User and Role Administrator
 </td>
 <td valign="top">
 
-Manage authorizations, trusted identity providers, and users. 
+Manage authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>
@@ -793,7 +795,7 @@ User and Role Auditor
 </td>
 <td valign="top">
 
-Read-only access for authorizations, trusted identity providers, and users. 
+Read-only access for authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>

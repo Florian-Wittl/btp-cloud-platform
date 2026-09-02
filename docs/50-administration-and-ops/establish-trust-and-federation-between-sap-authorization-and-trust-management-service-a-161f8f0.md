@@ -70,7 +70,7 @@ Consider the following restrictions and tips before you start.
 
     The origin key can have 36 characters at maximum. Only use the following characters for the origin key of the trust configuration.
 
-    `aA`–`zZ`, `0`–`9`, `-` \(hyphen\), `_` \(underscore\)
+    `aA`–`zZ`, `0`–`9`, `-` \(hyphen\), `_` \(underscore\), `.` \(period\)
 
 5.  Choose the domain configured with the SAP Cloud Identity Services tenant and continue with *Next*. It's also possible to use `Default` as domain.
 

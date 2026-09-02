@@ -2,7 +2,7 @@
 
 # SAP Java Connector
 
-You can use the SAP Java Connector through the SAP Java buildpacks.
+You can use the SAP Java Connector \(SAP JCo\) through SAP Java Buildpack.
 
 
 
@@ -10,7 +10,7 @@ You can use the SAP Java Connector through the SAP Java buildpacks.
 
 ## Activation
 
-SAP Java Buildpack \(1 and 2\) provide an option to use [SAP Java Connector \(SAP JCo\)](https://support.sap.com/en/product/connectors/jco.html).
+SAP Java Buildpack provides an option to use [SAP Java Connector \(SAP JCo\)](https://support.sap.com/en/product/connectors/jco.html).
 
 To activate SAP JCo in the buildpack, set the environment variable `USE_JCO` to *true*.
 
@@ -36,7 +36,10 @@ The activation of SAP JCo provides all relevant libraries in the application con
 
 ## Limitations
 
-SAP JCo is only available for the Tomcat-based application containers that are included in the SAP Java buildpacks. Spring Boot applications only work with SAP JCo if you're using WAR deployment.
+-   SAP JCo is only available for the Tomcat-based application containers that are included in SAP Java Buildpack.
+
+-   Spring Boot applications work with SAP JCo only if you're using WAR deployment.
+
 
 **Related Information**  
 

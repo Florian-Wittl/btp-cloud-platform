@@ -82,5 +82,5 @@ For more information, see [ConnectivityConfiguration API: Procedure](https://hel
 
 [Create Destinations from Scratch](https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/create-destinations-from-scratch)
 
-[SAP Java Connector](sap-java-connector-3cee866.md "You can use the SAP Java Connector through the SAP Java buildpacks.")
+[SAP Java Connector](sap-java-connector-3cee866.md "You can use the SAP Java Connector (SAP JCo) through SAP Java Buildpack.")
 

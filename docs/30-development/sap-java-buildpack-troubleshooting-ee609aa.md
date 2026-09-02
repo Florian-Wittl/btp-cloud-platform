@@ -40,7 +40,7 @@ You need to modify your Java applications to run on Apache TomEE 7 instead. To d
 
     -   Make sure that the `buildpack` variable is set to **`sap_java_buildpack`**. If pinned to a particular version, it must be at least 1.53.0.
 
-    -   For the TARGET\_RUNTIME variable, replace `tomee` with **`tomee7`**. To learn more, see [TomEE 7](https://help.sap.com/docs/btp/sap-business-technology-platform/tomee-7?version=Cloud).
+    -   For the TARGET\_RUNTIME variable, replace `tomee` with **`tomee7`**.
 
         For example:
 
@@ -62,11 +62,11 @@ You need to modify your Java applications to run on Apache TomEE 7 instead. To d
 
 2.  Check the information provided for Apache TomEE: [Migrate from TomEE 1 to TomEE 7](https://tomee.apache.org/tomee-7.1/docs/developer/migration/tomee-1-to-7.html)
 
-3.  Besides the TARGET\_RUNTIME variable, additional setups are needed. Please follow the [guide](https://help.sap.com/docs/btp/sap-business-technology-platform/tomee-7?version=Cloud) for using TomEE 7.
+3.  Besides the TARGET\_RUNTIME variable, additional setups are needed.
 
 4.  After applying the new change, if your application fails with an *OutOfMemoryError* exception, change your memory size configuration. See:
 
-    [Memory Calculator V1](memory-calculator-v1-deprecated-c1059e0.md)
+    [Memory Calculator](memory-calculator-505a71a.md)
 
     [XS Advanced Model: Memory Size Options](https://help.sap.com/docs/SAP_HANA_PLATFORM/4505d0bdaf4948449b7f7379d24d0f0d/5c253fd9539340369478809b3977be72.html)
 
@@ -97,7 +97,7 @@ As [previously announced](https://help.sap.com/whats-new/cf0cb2cb149647329b5d02a
 
 ### Solution
 
-To keep your Java applications up and running, you need to migrate to SAP Java Buildpack 2 as soon as possible. To learn how, see: [Migrate your Applications to SAP Java Buildpack 2](migrate-your-applications-to-sap-java-buildpack-2-8d0fc0c.md)
+To keep your Java applications up and running, you need to migrate to SAP Java Buildpack 2 as soon as possible.
 
 In exceptional cases \(if you haven’t managed to migrate yet\), you can keep using SAP Java Buildpack 1 **till the end of 2025**. To do that:
 

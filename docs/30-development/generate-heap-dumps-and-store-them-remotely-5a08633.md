@@ -8,7 +8,7 @@ If an application is bound to an Object Store service instance, heap dumps can b
 
 ## Prerequisites
 
-1.  Create an Object Store service instance. For example, the service name is **`myobjectstore`** and its plan is `s3-standard`:
+1.  Create an Object Store service instance. For example, the service name is **`myobjectstore`**, and its plan is **`s3-standard`**:
 
     ```
     cf create-service objectstore s3-standard myobjectstore
@@ -31,7 +31,7 @@ If an application is bound to an Object Store service instance, heap dumps can b
       - myobjectstore
     ```
 
-3.  Deploy your application \(**`myapp`**\):
+3.  Deploy your application:
 
     ```
     cf push myapp
@@ -168,9 +168,7 @@ Kills the Java process after the heap dump upload completes to trigger container
 </tr>
 </table>
 
-Once the heap dump is fully uploaded to the storage bucket/container created by the Object Store service, you can acquire it for analysis by using your cloud provider's command line or console.
-
-To do that, follow the steps below:
+Once the heap dump is fully uploaded to the storage bucket/container created by the Object Store service, you can acquire it for analysis by using your cloud provider's command line or console. To do that, follow the steps:
 
 
 
@@ -204,11 +202,15 @@ To do that, follow the steps below:
       }
     ```
 
-    **NOTE:** Pay attention to the values of `access_key_id`, `secret_access_key`, `bucket`, and `region` from the **"credentials"** section. You'll need them to download the heap dump.
+    **NOTE:** Pay attention to the values of the following credentials \(you'll need them to download the heap dump\):
 
-3.  Configure the cloud provider credentials. To do that, set up your cloud provider CLI with the credentials from **Step 1**.
+    -   `access_key_id`
+    -   `bucket`
+    -   `region`
 
-    For example: If you use AWS S3, run the following commands:
+3.  Configure the cloud provider credentials. To do that, set up your cloud provider CLI with the credentials from **Step 2**.
+
+    **For example:** If you use AWS S3, run the following commands:
 
     -   ```
 export AWS_ACCESS_KEY_ID=<access-key>

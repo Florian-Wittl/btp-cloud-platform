@@ -22,7 +22,7 @@ If your business application uses external services, you have to set up a destin
 
 ## Creating a Destination in Your Space
 
-> ### Prerequisites:  
+> ### Note:  
 > -   You have created an ABAP service instance. See [Creating an ABAP System](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/50b32f144e184154987a06e4b55ce447.html).
 > 
 > -   You have created a destination service instance. See [Creating Service Instances in Cloud Foundry](https://help.sap.com/viewer/09cc82baadc542a688176dce601398de/Cloud/en-US/6d6846def3c443aa9f83d127353147ce.html).

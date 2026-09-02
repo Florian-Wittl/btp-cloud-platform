@@ -172,6 +172,30 @@ In the above example:
     > > 
     > > ```
 
+-   `org.cloudfoundry.cloud-logging-service`
+
+    Export the operation logs of your multitarget application to an SAP Cloud Logging instance by defining a resource of type `org.cloudfoundry.cloud-logging-service` with the following parameters:
+
+    -   \(Optional\) `service-name` - Name of the SAP Cloud Logging service instance. Default value is the resource name.
+    -   \(Optional\) `service-key-name` - Name of the service key that holds the ingestion credentials. Default value is the resource name.
+    -   \(Optional\) `log-level` - Verbosity of the exported operation logs. Supported values are INFO, WARN, DEBUG, ERROR, and TRACE. Default value is INFO.
+    -   \(Optional\) `destination` - Map value specifying the `org-name` and `space-name` of the organization and space in which the SAP Cloud Logging instance resides. By default, the organization and space of the current deployment are used.
+
+    > ### Example:  
+    > > ### Sample Code:  
+    > > ```
+    > > resources:
+    > >   - name: my-cloud-logging
+    > >     type: org.cloudfoundry.cloud-logging-service
+    > >     parameters:
+    > >       service-name: my-cloud-logging-instance
+    > >       service-key-name: my-service-key
+    > >       log-level: INFO
+    > > 
+    > > ```
+
+    For more information, see [\(Experimental\) Exporting MTA Operation Logs to SAP Cloud Logging](experimental-exporting-mta-operation-logs-to-sap-cloud-logging-e443336.md).
+
 -   `configuration`
 
     For more information, see [Cross-MTA Dependencies](cross-mta-dependencies-b8e1953.md).
@@ -222,10 +246,10 @@ Created Service
 > > name: hcsp-sch
 > > type: com.sap.xs.hana-schema
 > > parameters:
-> > service-name: HCSP_SCH
-> > config:
-> > database_id: 9bf1f23a-123c-456e-b789-ff12ea34a5dc
-> > schema: HCSP_DB
+> >   service-name: HCSP_SCH
+> >   config:
+> >     database_id: 9bf1f23a-123c-456e-b789-ff12ea34a5dc
+> >     schema: HCSP_DB
 > > ```
 
 
@@ -280,10 +304,11 @@ SAP HANA secure store
 > > ### Sample Code:  
 > > ```
 > > resources:
-> > 	- name: my-hdi-service 
-> > 	  type: com.sap.xs.hdi-container 
-> > 	  parameters: 
-> > 		service: hanatrial
+> >   - name: my-hdi-service
+> >     type: com.sap.xs.hdi-container
+> >     parameters:
+> >       service: hanatrial
+> > 
 > > ```
 
 
@@ -1123,6 +1148,44 @@ Generated as described in the description.
 <tr>
 <td valign="top">
 
+`destination`
+
+</td>
+<td valign="top">
+
+Resource
+
+</td>
+<td valign="top">
+
+Write
+
+</td>
+<td valign="top">
+
+Map value specifying the organization and space in which the SAP Cloud Logging instance resides. Applies to a resource of type `org.cloudfoundry.cloud-logging-service`. Contains the `org-name` and `space-name` parameters. By default, the organization and space of the current deployment are used. For more information, see [\(Experimental\) Exporting MTA Operation Logs to SAP Cloud Logging](experimental-exporting-mta-operation-logs-to-sap-cloud-logging-e443336.md).
+
+</td>
+<td valign="top">
+
+The organization and space of the current deployment
+
+</td>
+<td valign="top">
+
+```
+destination:
+  org-name: my-org
+  space-name: my-space
+```
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
 `fail-on-service-update`
 
 </td>
@@ -1167,6 +1230,70 @@ fail-on-service-update:
 ```
 
 
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`log-level`
+
+</td>
+<td valign="top">
+
+Resource
+
+</td>
+<td valign="top">
+
+Write
+
+</td>
+<td valign="top">
+
+Verbosity of the operation logs that are exported to the SAP Cloud Logging instance. Applies to a resource of type `org.cloudfoundry.cloud-logging-service`. Supported values are INFO, WARN, DEBUG, ERROR, and TRACE. The values are hierarchical. For more information, see [\(Experimental\) Exporting MTA Operation Logs to SAP Cloud Logging](experimental-exporting-mta-operation-logs-to-sap-cloud-logging-e443336.md).
+
+</td>
+<td valign="top">
+
+INFO
+
+</td>
+<td valign="top">
+
+`log-level: DEBUG`
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`org-name`
+
+</td>
+<td valign="top">
+
+Resource
+
+</td>
+<td valign="top">
+
+Write
+
+</td>
+<td valign="top">
+
+Name of the organization in which the SAP Cloud Logging instance resides. Specified within the destination parameter of a resource of type `org.cloudfoundry.cloud-logging-service`. For more information, see [\(Experimental\) Exporting MTA Operation Logs to SAP Cloud Logging](experimental-exporting-mta-operation-logs-to-sap-cloud-logging-e443336.md).
+
+</td>
+<td valign="top">
+
+The organization of the current deployment
+
+</td>
+<td valign="top">
+
+`org-name: my-org`
 
 </td>
 </tr>
@@ -1433,6 +1560,38 @@ In the example above, `skip-service-updates` modifies the update strategy as fol
 -   allows users to specify which configurations should not be updated
 
 Note that these 3 key-value pairs can be in any order.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`space-name`
+
+</td>
+<td valign="top">
+
+Resource
+
+</td>
+<td valign="top">
+
+Write
+
+</td>
+<td valign="top">
+
+Name of the space in which the SAP Cloud Logging instance resides. Specified within the destination parameter of a resource of type `org.cloudfoundry.cloud-logging-service`. For more information, see [\(Experimental\) Exporting MTA Operation Logs to SAP Cloud Logging](experimental-exporting-mta-operation-logs-to-sap-cloud-logging-e443336.md).
+
+</td>
+<td valign="top">
+
+The space of the current deployment
+
+</td>
+<td valign="top">
+
+`space-name: my-space`
 
 </td>
 </tr>

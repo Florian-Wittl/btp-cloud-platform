@@ -1,5 +1,7 @@
 <!-- loioa6a00728e8c54efea8f7e60f6270b1d1 -->
 
+<link rel="stylesheet" type="text/css" href="../css/sap-icons.css"/>
+
 # Default Role Collections of SAP BTP
 
 The following table displays the default role collections available with SAP BTP after initially deploying your accounts.
@@ -121,7 +123,7 @@ xsuaa!*<suffix\>*
 </td>
 <td valign="top">
 
-Manage authorizations, trusted identity providers, and users. 
+Manage authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>
@@ -337,7 +339,7 @@ xsuaa!*<suffix\>*
 </td>
 <td valign="top">
 
-Manage authorizations, trusted identity providers, and users. 
+Manage authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>
@@ -526,7 +528,7 @@ xsuaa!*<suffix\>*
 </td>
 <td valign="top">
 
-Read-only access for authorizations, trusted identity providers, and users. 
+Read-only access for authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>
@@ -688,7 +690,7 @@ xsuaa!*<suffix\>*
 </td>
 <td valign="top">
 
-Read-only access for authorizations, trusted identity providers, and users. 
+Read-only access for authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>
@@ -1012,7 +1014,7 @@ xsuaa!*<suffix\>*
 </td>
 <td valign="top">
 
-Manage authorizations, trusted identity providers, and users. 
+Manage authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>
@@ -1093,7 +1095,7 @@ xsuaa!*<suffix\>*
 </td>
 <td valign="top">
 
-Read-only access for authorizations, trusted identity providers, and users. 
+Read-only access for authorizations, trusted identity providers, and users. <span style="color:#E78C07;"><span class="SAP-icons-V5"></span></span>: Includes security authorizations. See *Scopes with Critical Security Authorizations* under [Scopes](https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax?version=Cloud#scopes). 
 
 </td>
 </tr>

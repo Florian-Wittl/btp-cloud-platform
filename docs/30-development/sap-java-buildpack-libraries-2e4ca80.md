@@ -2,7 +2,7 @@
 
 # SAP Java Buildpack: Libraries
 
-On this page you can find changelogs about the latest updates made in the main five libraries of SAP Java Buildpack 2, provided on Maven Repository.
+On this page you can find changelogs about the latest updates made in the main five libraries of SAP Java Buildpack, provided on Maven Repository.
 
 
 
@@ -37,9 +37,47 @@ Changes
 <tr>
 <td valign="top">
 
+`(20 August 2026)`
+
+**`Version 2.33.0`**
+
+</td>
+<td valign="top">
+
+-   *com.fasterxml.jackson.annotations* is updated from version 2.21 to 2.22
+
+-   *com.fasterxml.jackson.databind* is updated from version 2.21.2 to 2.22.1
+
+-   *com.fasterxml.jackson* is updated from version 2.21.2 to 2.22.1
+
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`(6 August 2026)`
+
+**`Version 2.32.0`**
+
+</td>
+<td valign="top">
+
+-   No changes
+
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
 `(27 May 2026)`
 
-**`Vesrion 2.31.0`**
+**`Version 2.31.0`**
 
 </td>
 <td valign="top">
@@ -164,6 +202,23 @@ Changes
 <tr>
 <td valign="top">
 
+`(September 3 2026)`
+
+**`Version 2.24.0 - 2.28.0`**
+
+</td>
+<td valign="top">
+
+-   No changes
+
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
 `(May 27 2026)`
 
 **`Version 2.22.0 - 2.23.0`**
@@ -244,6 +299,40 @@ Changes
 <tr>
 <td valign="top">
 
+`(August 20 2026)`
+
+**`Version 2.34.0`**
+
+</td>
+<td valign="top">
+
+-   No changes
+
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`(August 6 2026)`
+
+**`Version 2.33.0`**
+
+</td>
+<td valign="top">
+
+-   *com.sap.cloud.sjb.xs-env* is updated from version 2.31.0 to 2.32.0
+
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
 `(27 May 2026)`
 
 **`Version 2.32.0`**
@@ -251,7 +340,7 @@ Changes
 </td>
 <td valign="top">
 
--   *com.sap.cloud.sjb:xs-env* is updated from 2.30.0 to 2.31.0
+-   *com.sap.cloud.sjb:xs-env* is updated from version 2.30.0 to 2.31.0
 
 
 
@@ -268,7 +357,7 @@ Changes
 </td>
 <td valign="top">
 
--   *com.sap.cloud.sjb:xs-env* is updated from 2.29.0 to 2.30.0
+-   *com.sap.cloud.sjb:xs-env* is updated from version 2.29.0 to 2.30.0
 
 
 
@@ -285,7 +374,7 @@ Changes
 </td>
 <td valign="top">
 
--   *com.sap.cloud.sjb:xs-env* is updated from 2.28.0 to 2.29.0
+-   *com.sap.cloud.sjb:xs-env* is updated from version 2.28.0 to 2.29.0
 
 
 
@@ -302,7 +391,7 @@ Changes
 </td>
 <td valign="top">
 
--   *com.sap.cloud.sjb:xs-env* is updated from 2.27.0 to 2.28.0
+-   *com.sap.cloud.sjb:xs-env* is updated from version 2.27.0 to 2.28.0
 
 
 
@@ -319,7 +408,7 @@ Changes
 </td>
 <td valign="top">
 
--   *com.sap.cloud.sjb:xs-env* is updated from 2.26.0 to 2.27.0
+-   *com.sap.cloud.sjb:xs-env* is updated from version 2.26.0 to 2.27.0
 
 
 
@@ -336,7 +425,7 @@ Changes
 </td>
 <td valign="top">
 
--   *com.sap.cloud.sjb:xs-env* is updated from 2.25.0 to 2.26.0
+-   *com.sap.cloud.sjb:xs-env* is updated from version 2.25.0 to 2.26.0
 
 
 
@@ -353,7 +442,7 @@ Changes
 </td>
 <td valign="top">
 
--   *com.sap.cloud.sjb:xs-env* is updated from 2.24.0 to 2.25.0
+-   *com.sap.cloud.sjb:xs-env* is updated from version 2.24.0 to 2.25.0
 
 
 
@@ -391,6 +480,23 @@ Release
 Changes
 
 </th>
+</tr>
+<tr>
+<td valign="top">
+
+`(August 20 2026)`
+
+**`Version 2.11.0 - 2.12.0`**
+
+</td>
+<td valign="top">
+
+-   No changes
+
+
+
+
+</td>
 </tr>
 <tr>
 <td valign="top">
@@ -439,6 +545,57 @@ Release
 Changes
 
 </th>
+</tr>
+<tr>
+<td valign="top">
+
+`(September 3 2026)`
+
+**`Version 2.24.0`**
+
+</td>
+<td valign="top">
+
+-   *com.sap.cloud.servicemanager* is updated from version 1.6.0 to 1.8.0
+
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`(August 20 2026)`
+
+**`Version 2.23.0`**
+
+</td>
+<td valign="top">
+
+-   *com.sap.cloud.servicemanager* is updated from version 1.1.0 to 1.6.0
+
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+`(August 6 2026)`
+
+**`Version 2.22.0`**
+
+</td>
+<td valign="top">
+
+-   No changes
+
+
+
+
+</td>
 </tr>
 <tr>
 <td valign="top">
