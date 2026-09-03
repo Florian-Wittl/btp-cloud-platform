@@ -10,9 +10,9 @@ The Registry Cache module adds a caching layer for container image registries in
 
 ## What Is Registry Cache?
 
-The Registry Cache module adds a caching layer for container image registries in SAP BTP, Kyma runtime instances. It reduces outbound traffic to upstream registries, improving image pull performance. With Registry Cache, you can also cache images from private registries. To do so, provide credentials for the caching layer to use when authenticating against those registries.
+Registry Cache reduces outbound traffic to upstream registries, improving image pull performance. With Registry Cache, you can also cache images from private registries. To do so, provide credentials for the caching layer to use when authenticating against those registries.
 
-The Registry Cache feature is built on top of the Gardener's registry cache extension. See [Configuring the Registry Cache Extension](https://gardener.cloud/docs/extensions/others/gardener-extension-registry-cache/registry-cache/configuration/).
+The Registry Cache module is built on top of the Gardener's registry cache extension. See [Configuring the Registry Cache Extension](https://gardener.cloud/docs/extensions/others/gardener-extension-registry-cache/registry-cache/configuration/).
 
 
 
@@ -39,9 +39,9 @@ The Registry Cache module consists of two main runtime components: the `Registry
 
 ![Architecture diagram of the Registry Cache Manager process. The RegistryCache Reconciler communicates bidirectionally with the Webhook Server running on TLS port 9443. The Webhook Server hosts the RegistryCacheConfig Webhook for validation and triggers certificate renewal. On certificate renewal, the Webhook Server calls the Certificate Manager, which patches the ValidatingWebhookConfiguration CA bundle. The /healthz and /readyz endpoints delegate to webhook.StartedChecker().](images/Registry_Cache_Module_Architecture_78cd8ec.png)
 
--   `RegistryCache` controller — reconciles `RegistryCache` custom resources \(CRs\) and drives status transitions.
--   Webhook Server — TLS server on port 9443 that validates `RegistryCacheConfig` resources on create and update.
--   Certificate Manager — watches TLS certificate files and rotates the CA bundle in `ValidatingWebhookConfiguration` on renewal.
+-   `RegistryCache` controller - reconciles `RegistryCache` custom resources \(CRs\) and drives status transitions.
+-   Webhook Server - TLS server on port 9443 that validates `RegistryCacheConfig` resources on creation and update.
+-   Certificate Manager - watches TLS certificate files and rotates the CA bundle in `ValidatingWebhookConfiguration` on renewal.
 
 
 

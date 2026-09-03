@@ -20,7 +20,7 @@ Create a `RegistryCacheConfig` custom resource \(CR\) to enable caching for an u
 
 ## Context
 
-`RegistryCacheConfig` is a namespace-scoped resource and can be created in any namespace.
+`RegistryCacheConfig` is a namespace-scoped resource. You can create it in any namespace.
 
 
 
@@ -52,7 +52,7 @@ Create a `RegistryCacheConfig` custom resource \(CR\) to enable caching for an u
 
     You can create multiple `RegistryCacheConfig` resources to cache different upstream registries. Each resource must have a unique name, and each upstream registry must be unique across all resources in the cluster.
 
-3.  Verify that KCP processed the resource successfully by checking its status:
+3.  To verify that KCP processed the resource successfully, check its status.
 
     ```
     kubectl get registrycacheconfig <name> -n <namespace> -o jsonpath='{.status.state}'
@@ -60,8 +60,8 @@ Create a `RegistryCacheConfig` custom resource \(CR\) to enable caching for an u
 
     The expected output values are the following:
 
-    -   *Pending* — KCP is processing the configuration.
-    -   *Ready* — the caching layer has been configured successfully.
-    -   *Error* — KCP encountered an issue and is retrying. The state transitions to `Ready` automatically when processing succeeds.
+    -   *Pending* - KCP is processing the configuration.
+    -   *Ready* - the caching layer has been configured successfully.
+    -   *Error* - KCP encountered an issue and is retrying. The state transitions to `Ready` automatically when processing succeeds.
 
 

@@ -61,5 +61,5 @@ APIRules that are not displayed in Kyma dashboard were originally created using 
 
 ## Solution
 
-To make sure that support for your APIRules is maintained, you must migrate them to version `v2`. To learn how to do this, see [APIRule Migration](apirule-migration-f8df238.md).
+To make sure that support for your APIRules is maintained, you must migrate them to version `v2`. To learn how to do this, see [Migrate APIRule from Version v1beta1 to Version v2](migrate-apirule-from-version-v1beta1-to-version-v2-f8df238.md).
 

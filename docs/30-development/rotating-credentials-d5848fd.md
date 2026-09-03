@@ -33,7 +33,7 @@ Credential Secrets are immutable and cannot be updated in place.
     EOF
     ```
 
-2.  Update `spec.secretReferenceName` in the existing `RegistryCacheConfig` resource to reference the new Secret.
+2.  To reference the new Secret, update `spec.secretReferenceName` in the existing `RegistryCacheConfig` resource.
 
     ```
     kubectl patch registrycacheconfig <name> -n <namespace> \

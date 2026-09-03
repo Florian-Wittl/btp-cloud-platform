@@ -85,7 +85,7 @@ rules:
 
 If you use Cloud Identity Services, you can find the issuer URL in the OIDC well-known configuration at `https://{YOUR_TENANT}.accounts.ondemand.com/.well-known/openid-configuration`.
 
-**Required action**: Add the `issuer` field to your APIRule specification. For more information, see [Migrating APIRule v1beta1 of Type jwt to Version v2](migrating-apirule-v1beta1-of-type-jwt-to-version-v2-bcaec91.md).
+**Required action**: Add the `issuer` field to your APIRule specification. For more information, see [Migrate APIRule v1beta1 of Type jwt to Version v2](migrate-apirule-v1beta1-of-type-jwt-to-version-v2-bcaec91.md).
 
 
 
@@ -95,7 +95,7 @@ If you use Cloud Identity Services, you can find the issuer URL in the OIDC well
 
 The APIRule CR in version `v2` does not support Oathkeeper OAuth2 handlers. Instead, it introduces the `extAuth` field, which you can use to configure an external authorizer.
 
-**Required action**: Migrate your Oathkeeper-based OAuth2 handlers to use an external authorizer. To learn how to do this, see [Migrating APIRule v1beta1 of type oauth2\_introspection to version v2](migrating-apirule-v1beta1-of-type-oauth2-introspection-to-version-v2-394d18a.md) and [External Authorization](https://kyma-project.io/external-content/api-gateway/docs/user/expose-workloads/extAuth/README.html).
+**Required action**: Migrate your Oathkeeper-based OAuth2 handlers to use an external authorizer. To learn how to do this, see [Migrate APIRule v1beta1 of Type oauth2\_introspection to Version v2](migrate-apirule-v1beta1-of-type-oauth2-introspection-to-version-v2-394d18a.md) and [External Authorization](https://kyma-project.io/external-content/api-gateway/docs/user/expose-workloads/extAuth/README.html).
 
 
 
